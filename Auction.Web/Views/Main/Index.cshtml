@@ -1,0 +1,50 @@
+﻿@model Auction.Web.ViewModels.AuctionLotsViewModel
+@{
+    ViewData["Title"] = "Аукционы";
+}
+<div class="parallax">
+    <div class="container py-5">
+        <div class="text-center mb-5 floating">
+            <h1 class="display-4 fw-bold text-white mb-3">Добро пожаловать на аукцион выдуманных предметов!</h1>
+            <p class="lead text-white-50 mb-4">Здесь вы можете купить/продать свой игровой предмет с помощью лотов</p>
+            <div class="glass-card p-4 rounded-4 mb-4">
+                <h2 class="text-white mb-0">Активные Лоты</h2>
+            </div>
+        </div>
+
+        <div class="card glass-card p-4 rounded-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="glass-card">
+                        <tr>
+                            <th class="text-white fw-bold">Лот №</th>
+                            <th class="text-white fw-bold">игровой предмет</th>
+                            <th class="text-white fw-bold">Лого предмета</th>
+                            <th class="text-white fw-bold">Описание</th>
+                            <th class="text-white fw-bold">Текущая цена</th>
+                            <th class="text-white fw-bold">Минимальный шаг</th>
+                            <th class="text-white fw-bold">Цена выкупа</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var lot in Model.Auctions)
+                        {
+                            <tr class="glass-card-hover">
+                                @try{
+                                    <td class="text-white">@lot.Id</td>
+                                    <td class="text-white">@Model.Games.First(g => g.AuctionId == lot.Id).Name</td>
+                                    <td class="text-white"><img src="@Model.Games.First(g => g.AuctionId == lot.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);"/></td>
+                                    <td class="text-white-50">@Model.Games.First(g => g.AuctionId == lot.Id).Description</td>
+                                    <td class="text-success fw-bold">@lot.CurrentPrice.ToString("N0") ₽</td>
+                                    <td class="text-warning">@lot.MinPriceUpdateRate.ToString("N0") ₽</td>
+                                    <td class="text-danger fw-bold">@lot.BuyPrice.ToString("N0") ₽</td>
+                                }
+                                catch {}
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
