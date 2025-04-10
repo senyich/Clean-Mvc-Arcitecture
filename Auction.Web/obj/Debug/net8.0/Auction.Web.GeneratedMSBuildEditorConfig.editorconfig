@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/Authorization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFpbi9BdXRob3JpemF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/CreateGame.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFpbi9DcmVhdGVHYW1lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

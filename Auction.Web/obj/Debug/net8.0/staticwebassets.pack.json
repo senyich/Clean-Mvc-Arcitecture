@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web/wwwroot/UploadedImages/6c791dca-3369-44cf-ac21-e99a88815801.jpeg",
+      "PackagePath": "staticwebassets/UploadedImages/6c791dca-3369-44cf-ac21-e99a88815801.jpeg"
+    },
+    {
       "Id": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

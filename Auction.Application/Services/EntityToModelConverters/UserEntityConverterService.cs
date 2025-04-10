@@ -14,7 +14,7 @@ namespace Auction.Application.Services
         }
         public async Task<UserModel> Convert(UserEntity obj)
         {
-            var user = UserModel.Create(obj.UserName, obj.PasswordHash);
+            var user = UserModel.Create(obj.Id, obj.UserName, obj.PasswordHash);
             if(user.model!=null)
             {
                 await logger.LogAsync("UserEntityConverter","Успешная конвертация",LogState.Success);

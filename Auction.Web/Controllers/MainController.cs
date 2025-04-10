@@ -65,5 +65,11 @@ namespace Auction.Web.Controllers
             };
             return View(view);
         }
+        [HttpGet]
+        [Route("/Authorization")]
+        public async Task<IActionResult> Authorization()
+        {
+            return View();
+        }
     }
 }

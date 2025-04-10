@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HCrr+cNlPi/dTYIf7bwYdTkug2S5gPsUJDVVjNEGYCc=",
+  "Hash": "5w/kHcf8frescTIILD4O3/xYpusqjy+Kaj1DYw1z8l8=",
   "Source": "Auction.Web",
   "BasePath": "_content/Auction.Web",
   "Mode": "Default",
@@ -1155,6 +1155,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web/wwwroot/UploadedImages/6c791dca-3369-44cf-ac21-e99a88815801.jpeg",
+      "SourceId": "Auction.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Web/wwwroot/",
+      "BasePath": "_content/Auction.Web",
+      "RelativePath": "UploadedImages/6c791dca-3369-44cf-ac21-e99a88815801.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/UploadedImages/6c791dca-3369-44cf-ac21-e99a88815801.jpeg"
     }
   ]
 }
