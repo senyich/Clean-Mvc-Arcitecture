@@ -1,7 +1,7 @@
 using Auction.Domain.Abstractions;
 using Auction.Domain.Entities;
-using Auction.Domain.Enums;
 using Auction.Domain.Models;
+using Auction.Domain.Enums;
 
 namespace Auction.Application.Services
 {

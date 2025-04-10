@@ -4,7 +4,7 @@ namespace Auction.Domain.Abstractions
 {
     public interface IUserValidationService
     {
-        Task AddUserAsync(UserModel user);
+        Task<int> AddUserAsync(UserModel user);
         Task<UserModel> GetUserAsync(int id);
         Task<List<UserModel>> GetUsersAsync();
         Task RemoveUserAsync(int id);

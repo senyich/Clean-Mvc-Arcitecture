@@ -4,12 +4,14 @@ using Auction.Domain.Models;
 using Auction.Domain.Enums;
 using Auction.Domain.Abstractions;
 using Auction.Domain.Entities;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Auction.Web.Controllers
 {
     public class FormController : Controller
     {
         private IAuctionValidationService auctionRepository;
+        private ISecurityService securityService;
         private IGameValidationService gameRepository;
         private ILoggerService logger;
         private IFileLogisticService fileLogisticService;
@@ -20,9 +22,11 @@ namespace Auction.Web.Controllers
             ILoggerService logger,
             IFileLogisticService fileLogisticService,
             IWebHostEnvironment environment,
-            IGameValidationService gameRepository
+            IGameValidationService gameRepository,
+            ISecurityService securityService
             )
         {
+            this.securityService = securityService;
             this.gameRepository = gameRepository;
             this.auctionRepository = auctionRepository;
             this.logger = logger;
@@ -30,7 +34,7 @@ namespace Auction.Web.Controllers
             this.environment = environment;
         }
         [HttpPost]
-        [Route("/Home/AddAuctionLot")]
+        [Route("/Main/AddAuctionLot")]
         public async Task<IActionResult> AddAuctionLot(AuctionLotsViewModel model)
         {
             var (auctionModel, error) = AuctionModel.Create(0, model.GameId, model.CurrentPrice, model.BuyPrice,model.MinPriceUpdateRate);    
@@ -50,7 +54,7 @@ namespace Auction.Web.Controllers
             return RedirectToAction("Index", "Main");
         }
         [HttpPost]
-        [Route("/Home/AddGame")]
+        [Route("/Main/AddGame")]
         public async Task<IActionResult> AddGame(GameViewModel game)
         {
             string filePath = string.Empty;
@@ -78,6 +82,13 @@ namespace Auction.Web.Controllers
             }
             await logger.LogAsync("FormController",error,LogState.Error);
             return RedirectToAction("Index", "Main");
+        }
+        public async Task<IActionResult> Login()
+        {
+            var jwtToken = await securityService.GenerateJWT("");
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+            HttpContext.Response.Cookies.Append("myToken", tokenString);
+            return View();
         }
 
     }

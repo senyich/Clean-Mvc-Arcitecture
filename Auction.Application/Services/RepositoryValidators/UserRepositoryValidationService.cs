@@ -22,17 +22,19 @@ namespace Auction.Application.Services
             this.entityConverter = entityConverter;
             this.modelConverter = modelConverter;
         }
-        public async Task AddUserAsync(UserModel user)
+        public async Task<int> AddUserAsync(UserModel user)
         {
             try
             {
                 var userEntity = await modelConverter.Convert(user);
-                await dbRepository.Add(userEntity);
+                var id = await dbRepository.Add(userEntity);
                 await logger.LogAsync("UserValidator", $"Данные о пользователе  №{userEntity.Id} были занесены успешно", LogState.Success);
+                return id;
             }
             catch (Exception ex)
             {
                 await logger.LogAsync("UserValidator", $"add data - {ex.Message}", LogState.Error);
+                return -1;
             }
         }
         public async Task RemoveUserAsync(int id)

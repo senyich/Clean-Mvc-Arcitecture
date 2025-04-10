@@ -41,7 +41,10 @@ namespace Auction.Web.ServiceExtension
             services.AddScoped<IConverter<GameEntity, GameModel>, GameEntityConverterService>();
             services.AddScoped<IConverter<GameModel,GameEntity>, GameModelConverterService>();
             services.AddScoped<IFileLogisticService, ImagesLogisticService>();
+            services.AddScoped<ISecurityService, SecurityService>();
             services.AddControllersWithViews();
+            services.AddAuthentication();
+            services.AddAuthorization();
             return services;
         }
     }

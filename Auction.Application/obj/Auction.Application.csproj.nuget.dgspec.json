@@ -1,39 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj": {}
+    "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Application/Auction.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj": {
+    "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Application/Auction.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj",
+        "projectUniqueName": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Application/Auction.Application.csproj",
         "projectName": "Auction.Application",
-        "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj",
-        "packagesPath": "C:\\Users\\Батя\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\obj\\",
+        "projectPath": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Application/Auction.Application.csproj",
+        "packagesPath": "/home/senyacm/.nuget/packages/",
+        "outputPath": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Application/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Батя\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/senyacm/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
-                "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj"
+              "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/Auction.Domain.csproj": {
+                "projectPath": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/Auction.Domain.csproj"
               }
             }
           }
@@ -48,6 +42,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -69,32 +67,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.114/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
+    "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/Auction.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj",
+        "projectUniqueName": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/Auction.Domain.csproj",
         "projectName": "Auction.Domain",
-        "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj",
-        "packagesPath": "C:\\Users\\Батя\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\obj\\",
+        "projectPath": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/Auction.Domain.csproj",
+        "packagesPath": "/home/senyacm/.nuget/packages/",
+        "outputPath": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Батя\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/senyacm/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -113,6 +105,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -134,7 +130,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.114/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
