@@ -1,0 +1,301 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Web\\Auction.Web.csproj": {}
+  },
+  "projects": {
+    "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj",
+        "projectName": "Auction.Application",
+        "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj",
+        "packagesPath": "C:\\Users\\top_acdemy_student\\.nuget\\packages\\",
+        "outputPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\top_acdemy_student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
+                "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj",
+        "projectName": "Auction.Domain",
+        "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj",
+        "packagesPath": "C:\\Users\\top_acdemy_student\\.nuget\\packages\\",
+        "outputPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\top_acdemy_student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj",
+        "projectName": "Auction.Infrastructure",
+        "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\top_acdemy_student\\.nuget\\packages\\",
+        "outputPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\top_acdemy_student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
+                "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Web\\Auction.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Web\\Auction.Web.csproj",
+        "projectName": "Auction.Web",
+        "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Web\\Auction.Web.csproj",
+        "packagesPath": "C:\\Users\\top_acdemy_student\\.nuget\\packages\\",
+        "outputPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\top_acdemy_student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj": {
+                "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj"
+              },
+              "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
+                "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj"
+              },
+              "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj": {
+                "projectPath": "C:\\CurrentLesson\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

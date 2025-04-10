@@ -1,0 +1,75 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Auction.Web
+build_property.RootNamespace = Auction.Web
+build_property.ProjectDir = C:\CurrentLesson\Clean-Mvc-Arcitecture\Auction.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\CurrentLesson\Clean-Mvc-Arcitecture\Auction.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/Authorization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxBdXRob3JpemF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/CreateGame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxDcmVhdGVHYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/CreateLot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxDcmVhdGVMb3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/Games.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxHYW1lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Main/UserCabinet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxVc2VyQ2FiaW5ldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Shared/_CSSPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DU1NQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Shared/_FooterPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Shared/_HeaderPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CurrentLesson/Clean-Mvc-Arcitecture/Auction.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,120 @@
+@model UserAuthViewModel
+
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="container">
+ 
+    <div class="row">
+        <!-- Боковая панель профиля -->
+        <div class="col-lg-4 mb-4">
+            <div class="card glass-card rounded-4 p-4 text-center">
+                <div class="position-relative mb-3">
+                    <div class="avatar-circle mx-auto" style="width: 120px; height: 120px; background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 3rem; color: white;">@Model.UserName.Substring(0, 1).ToUpper()</span>
+                    </div>
+                    <button class="btn btn-sm btn-grad position-absolute bottom-0 end-0 translate-middle" style="width: 40px; height: 40px; border-radius: 50%; padding: 0;">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                
+                <h3 class="card-title mb-1">UserName: @Model.UserName</h3>
+                
+                <button class="btn btn-grad w-100 mb-3">
+                    <i class="fas fa-plus me-2"></i>Добавить игру
+                </button>
+            </div>
+            
+        </div>
+        
+        <!-- Основная информация -->
+        <div class="col-lg-8">
+            <!-- Карточка профиля -->
+            <div class="card glass-card rounded-4 p-4 mb-4" id="profile">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="card-title mb-0">Профиль</h3>
+                    <button class="btn btn-sm btn-outline-light">
+                        <i class="fas fa-edit me-1"></i>Редактировать
+                    </button>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-white-50">Имя пользователя</label>
+                        <div class="form-control bg-transparent text-white">@Model.UserName</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-white-50">Дата регистрации</label>
+                        <div class="form-control bg-transparent text-white">Не указана</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-white-50">Email</label>
+                        <div class="form-control bg-transparent text-white">Не указан</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label text-white-50">Телефон</label>
+                        <div class="form-control bg-transparent text-white">Не указан</div>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <label class="form-label text-white-50">О себе</label>
+                    <div class="form-control bg-transparent text-white" style="min-height: 100px;">Пользователь еще не добавил информацию о себе</div>
+                </div>
+            </div>
+            
+            <!-- Список игр -->
+            <div class="card glass-card rounded-4 p-4" id="games">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="card-title mb-0">Мои игры</h3>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="gamesFilter" data-bs-toggle="dropdown">
+                            <i class="fas fa-filter me-1"></i>Все
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Все</a></li>
+                            <li><a class="dropdown-item" href="#">Активные</a></li>
+                            <li><a class="dropdown-item" href="#">Завершенные</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                @if (Model.Games != null && Model.Games.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th>Название</th>
+                                    <th>Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var game in Model.Games)
+                                {
+                                    <tr class="glass-card-hover">
+                                        <td>@game.Name</td>
+                                        <td><span class="badge bg-success">Активна</span></td>
+                                        <td>@game.Description)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="fas fa-gamepad fa-4x mb-3 text-white-50"></i>
+                        <h5 class="text-white">У вас пока нет игр</h5>
+                        <p class="text-white-50">Добавьте свою первую игру для участия в аукционах</p>
+                        <button class="btn btn-grad">
+                            <i class="fas fa-plus me-2"></i>Добавить игру
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

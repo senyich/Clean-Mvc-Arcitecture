@@ -1,0 +1,62 @@
+@model AllGamesViewModel
+@{
+    ViewData["Title"] = "Игры";
+}
+
+<div class="parallax">
+    <div class="container py-5">
+        <div class="text-center mb-5 floating">
+            <h1 class="display-4 fw-bold text-white mb-3">Каталог игр</h1>
+            <p class="lead text-white-50 mb-4">Все доступные игры в нашей системе</p>
+            <div class="glass-card p-4 rounded-4 mb-4">
+                <h2 class="text-white mb-0">Список игр</h2>
+            </div>
+        </div>
+
+        <div class="card glass-card p-4 rounded-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="glass-card">
+                        <tr>
+                            <th class="text-white fw-bold">ID</th>
+                            <th class="text-white fw-bold">Название</th>
+                            <th class="text-white fw-bold">Описание</th>
+                            <th class="text-white fw-bold">Изображение</th>
+                            <th class="text-white fw-bold">Привязанный аукцион</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var game in Model.Games)
+                        {
+                            <tr class="glass-card-hover">
+                                <td class="text-white">@game.Id</td>
+                                <td class="text-white fw-bold">@game.Name</td>
+                                <td class="text-white-50">@(game.Description.Length > 50 ? game.Description.Substring(0, 50) + "..." : game.Description)</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(game.ImgPath))
+                                    {
+                                        <img src="@game.ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);" alt="@game.Name" />
+                                    }
+                                    else
+                                    {
+                                        <span class="text-white-50">Нет изображения</span>
+                                    }
+                                </td>
+                                <td class="text-white">
+                                    @if (game.AuctionId > 0)
+                                    {
+                                        <span class="badge bg-success">Аукцион #@game.AuctionId</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Не привязан</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
