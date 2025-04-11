@@ -1,4 +1,4 @@
-﻿using Auction.Domain.Abstractions;
+﻿using Auction.Application.Abstractions;
 using Auction.Domain.Entities;
 using Auction.Domain.Models;
 

@@ -18,11 +18,11 @@
                     <thead class="glass-card">
                         <tr>
                             <th class="text-white fw-bold">Лот №</th>
-                            <th class="text-white fw-bold">игровой предмет</th>
+                            <th class="text-white fw-bold">Предмет</th>
                             <th class="text-white fw-bold">Лого предмета</th>
                             <th class="text-white fw-bold">Описание</th>
                             <th class="text-white fw-bold">Текущая цена</th>
-                            <th class="text-white fw-bold">Минимальный шаг</th>
+                            <th class="text-white fw-bold">Минимальный шаг повышения ставки</th>
                             <th class="text-white fw-bold">Цена выкупа</th>
                         </tr>
                     </thead>
@@ -32,9 +32,9 @@
                             <tr class="glass-card-hover">
                                 @try{
                                     <td class="text-white">@lot.Id</td>
-                                    <td class="text-white">@Model.Games.First(g => g.AuctionId == lot.Id).Name</td>
-                                    <td class="text-white"><img src="@Model.Games.First(g => g.AuctionId == lot.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);"/></td>
-                                    <td class="text-white-50">@Model.Games.First(g => g.AuctionId == lot.Id).Description</td>
+                                    <td class="text-white">@Model.Items.First(g => g.AuctionId == lot.Id).Name</td>
+                                    <td class="text-white"><img src="@Model.Items.First(g => g.AuctionId == lot.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);"/></td>
+                                    <td class="text-white-50">@Model.Items.First(g => g.AuctionId == lot.Id).Description</td>
                                     <td class="text-success fw-bold">@lot.CurrentPrice.ToString("N0") ₽</td>
                                     <td class="text-warning">@lot.MinPriceUpdateRate.ToString("N0") ₽</td>
                                     <td class="text-danger fw-bold">@lot.BuyPrice.ToString("N0") ₽</td>

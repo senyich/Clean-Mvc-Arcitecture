@@ -1,6 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Auction.Domain.Abstractions;
+using Auction.Application.Abstractions;
 using Auction.Domain.Models;
 
 namespace Auction.Application.Services

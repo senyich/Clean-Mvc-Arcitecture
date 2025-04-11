@@ -5,7 +5,7 @@
         public int Id {get;set;}
         public string UserName {get;set;}
         public string PasswordHash {get;set;}
-        public ICollection<GameEntity> Games {get;set;}
+        public ICollection<ItemEntity> Games {get;set;}
     }
 }
 

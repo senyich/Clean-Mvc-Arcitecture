@@ -16,15 +16,15 @@
                         <!-- Общие ошибки -->
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="mb-3">
-                            <label asp-for="GameId" class="form-label small text-white-75 mb-1"></label>
-                            <select asp-for="GameId" class="form-control bg-transparent text-white border-white-20 rounded-3 py-2 px-3 small" required>
-                                <option value="">Выберите игровой предмет</option>
-                                @foreach(var game in Model.Games.Where(g=>g.AuctionId == 0))
+                            <label asp-for="ItemId" class="form-label small text-white-75 mb-1"></label>
+                            <select asp-for="ItemId" class="form-control bg-transparent text-white border-white-20 rounded-3 py-2 px-3 small" required>
+                                <option value="">Выберите предмет</option>
+                                @foreach(var item in Model.Items.Where(g=>g.AuctionId == 0))
                                 {
-                                    <option value="@game.Id">@game.Name</option>
+                                    <option value="@item.Id">@item.Name</option>
                                 }
                             </select>
-                            <span asp-validation-for="GameId" class="text-danger small"></span>
+                            <span asp-validation-for="ItemId" class="text-danger small"></span>
                         </div>
 
                         <div class="mb-3">

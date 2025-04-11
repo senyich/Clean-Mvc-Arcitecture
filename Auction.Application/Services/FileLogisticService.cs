@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Http;
-using Auction.Domain.Abstractions;
+using Auction.Application.Abstractions;
 
 namespace Auction.Application.Services
 {

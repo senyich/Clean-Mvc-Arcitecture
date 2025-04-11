@@ -1,7 +1,9 @@
-﻿using Auction.Domain.Abstractions;
+﻿using Auction.Application.Abstractions;
 using Auction.Domain.Entities;
 using Auction.Domain.Enums;
 using Auction.Domain.Models;
+using Auction.Domain.Repositories;
+using Auction.Domain.Repositories.Abstraction;
 
 namespace Auction.Application.Services
 {
@@ -10,9 +12,9 @@ namespace Auction.Application.Services
         private IConverter<UserEntity, UserModel> entityConverter;
         private IConverter<UserModel, UserEntity> modelConverter;
         private IDbRepository<UserEntity> dbRepository;
-        private ILoggerService logger;
+        private ILoggerRepository logger;
         public UserRepositoryValidationService(
-            ILoggerService logger, 
+            ILoggerRepository logger, 
             IDbRepository<UserEntity> dbRepository,
             IConverter<UserEntity,UserModel> entityConverter,
             IConverter<UserModel,UserEntity> modelConverter)

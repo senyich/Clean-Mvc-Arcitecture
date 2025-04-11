@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Auction.Domain;
 using Auction.Domain.Entities;
-namespace Auction.DataAccess
+namespace Auction.Infrastructure
 {
     public class LoggerContext : DbContext
     {

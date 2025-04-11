@@ -6,12 +6,12 @@ namespace Auction.Web.ViewModels
 {
     public class AuctionLotsViewModel
     {
-         public List<GameModel> Games { get; set; }
+         public List<ItemModel> Items { get; set; }
         public List<AuctionModel> Auctions { get; set; }
 
         [Required(ErrorMessage = "Выберите игру")]
-        [Display(Name = "Игра")]
-        public int GameId { get; set; }
+        [Display(Name = "Предмет")]
+        public int ItemId { get; set; }
 
         [Required(ErrorMessage = "Укажите текущую цену")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Цена должна быть больше 0")]

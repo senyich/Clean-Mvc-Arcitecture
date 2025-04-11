@@ -1,4 +1,4 @@
-using Auction.Domain.Abstractions;
+using Auction.Application.Abstractions;
 using Auction.Domain.Models;
 using Auction.Domain.Enums;
 using Auction.Web.ViewModels;
@@ -6,60 +6,60 @@ using Auction.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using Auction.Domain.Repositories.Abstraction;
 
 namespace Auction.Web.Controllers
 {
     public class MainController : Controller
     {
         private IAuctionValidationService auctionRepository;
-        private IGameValidationService gameRepository;
+        private IItemValidationService itemRepository;
         private IUserValidationService userRepository;
-        private ILoggerService logger;
+        private ILoggerRepository logger;
         public MainController(
             IAuctionValidationService auctionRepository,
-            IGameValidationService gameRepository,
-            ILoggerService logger,
+            IItemValidationService gameRepository,
+            ILoggerRepository logger,
             IUserValidationService userRepository
             )
         {
             this.logger = logger;
             this.auctionRepository = auctionRepository;
-            this.gameRepository = gameRepository;
+            this.itemRepository = gameRepository;
             this.userRepository = userRepository;
         }
         [HttpGet]
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            var games = await gameRepository.GetAllGamesAsync();
+            var games = await itemRepository.GetAllItemsAsync();
             var auctions = await auctionRepository.GetAllLotsAsync();
             var view = new AuctionLotsViewModel()
             {
                 Auctions = auctions,
-                Games = games
+                Items = games
             };
             return View(view);
         }
         [HttpGet]
-        [Authorize]
         [Route("/CreateLot")]
         public async Task<IActionResult> CreateLot()
         { 
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
-            var games = await gameRepository.GetAllGamesAsync();
+            var games = await itemRepository.GetAllItemsAsync();
             var auctions = await auctionRepository.GetAllLotsAsync();
             var view = new AuctionLotsViewModel()
             {
                 Auctions = auctions,
-                Games = games
+                Items = games
             };
             return View(view);
         } 
         [HttpGet]
-        [Route("/CreateGame")]
-        public async Task<IActionResult> CreateGame()
+        [Route("/AddItem")]
+        public async Task<IActionResult> AddItem()
         { 
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
@@ -67,13 +67,13 @@ namespace Auction.Web.Controllers
             return View();
         }
         [HttpGet]
-        [Route("/Games")]
-        public async Task<IActionResult> Games()
+        [Route("/Items")]
+        public async Task<IActionResult> Items()
         {
-            var games = await gameRepository.GetAllGamesAsync();
-            var view = new AllGamesViewModel()
+            var games = await itemRepository.GetAllItemsAsync();
+            var view = new ItemsViewModel()
             {
-                Games = games
+                Items = games
             };
             return View(view);
         }

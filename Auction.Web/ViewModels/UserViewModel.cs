@@ -25,6 +25,6 @@ namespace Auction.Web.ViewModels
         
         [DefaultValue(true)]
         public bool IsLoginMode { get; set; } = true;
-        public List<GameModel> Games {get;set;} = new List<GameModel>();
+        public List<ItemModel> Games {get;set;} = new List<ItemModel>();
     }
 }

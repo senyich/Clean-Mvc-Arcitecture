@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Auction.Domain.Entities;
 
-namespace Auction.DataAccess
+namespace Auction.Infrastructure
 {
     public class AuctionContext : DbContext
     {
         public DbSet<AuctionEntity> AuctionsLots { get; set; }
-        public DbSet<GameEntity> Games { get; set; }
+        public DbSet<ItemEntity> Items { get; set; }
         public DbSet<UserEntity> Users { get; set; }
-        private string connString = string.Empty;
         public AuctionContext() { }
         public AuctionContext(DbContextOptions<AuctionContext> options)
             : base(options)
@@ -27,7 +26,7 @@ namespace Auction.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AuctionEntity>()
-                .HasOne(a => a.Game)
+                .HasOne(a => a.Item)
                 .WithOne(g => g.AuctionLot);
         }
     }

@@ -329,10 +329,6 @@
         }
       },
       "Auction.Domain/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
-          "Microsoft.AspNetCore.Http": "2.3.0"
-        },
         "runtime": {
           "Auction.Domain.dll": {}
         }

@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Auction.Domain.Abstractions;
+using Auction.Application.Abstractions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Auction.Application.Services

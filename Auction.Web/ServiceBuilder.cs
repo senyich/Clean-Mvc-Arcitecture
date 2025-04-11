@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Auction.Domain.Abstractions;
+using Auction.Application.Abstractions;
 using Auction.Application.Services;
-using Auction.DataAccess;
-using Auction.DataAccess.Repositories;
+using Auction.Infrastructure;
+using Auction.Infrastructure.Repositories;
+using Auction.Domain.Repositories.Abstraction;
 using Auction.Domain.Entities;
 using Auction.Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,8 +18,8 @@ namespace Auction.Web.ServiceExtension
         {     
             services.AddScoped<IDbRepository<AuctionEntity>, AuctionRepository>();
             services.AddScoped<IDbRepository<UserEntity>, UserRepository>();
-            services.AddScoped<IDbRepository<GameEntity>, GameRepository>();
-            services.AddScoped<ILoggerService, LoggerDbRepository>();
+            services.AddScoped<IDbRepository<ItemEntity>, GameRepository>();
+            services.AddScoped<ILoggerRepository, LoggerDbRepository>();
             return services;
         }
         public static IServiceCollection AddDbContexts(this IServiceCollection services, ConfigurationManager config)
@@ -35,14 +36,14 @@ namespace Auction.Web.ServiceExtension
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IAuctionValidationService, AuctionRepositoryValidationService>();
-            services.AddScoped<IGameValidationService, GameRepositoryValidationService>();
+            services.AddScoped<IItemValidationService, ItemsRepositoryValidationService>();
             services.AddScoped<IUserValidationService, UserRepositoryValidationService>();
             services.AddScoped<IConverter<UserEntity, UserModel>, UserEntityConverterService>();
             services.AddScoped<IConverter<UserModel,UserEntity>, UserModelConverterService>();
             services.AddScoped<IConverter<AuctionModel,AuctionEntity>, AuctionModelConverterService>();
             services.AddScoped<IConverter<AuctionEntity, AuctionModel>, AuctionEntityConverterService>();
-            services.AddScoped<IConverter<GameEntity, GameModel>, GameEntityConverterService>();
-            services.AddScoped<IConverter<GameModel,GameEntity>, GameModelConverterService>();
+            services.AddScoped<IConverter<ItemEntity, ItemModel>, ItemEntityConverterService>();
+            services.AddScoped<IConverter<ItemModel,ItemEntity>, GameModelConverterService>();
             services.AddScoped<IFileLogisticService, ImagesLogisticService>();
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<IAuthService, UserAuthService>();
