@@ -8,33 +8,35 @@ namespace Auction.Application.Services
 {
     public class ItemsRepositoryValidationService : IItemValidationService
     {        
-        private IConverter<ItemEntity, ItemModel> entityConverter;
-        private IConverter<ItemModel, ItemEntity> modelConverter;
-        private IDbRepository<ItemEntity> dbRepository;
-        private ILoggerRepository logger;
+        private IConverter<ItemEntity, ItemModel> itemEntityToModelConverter;
+        private IConverter<ItemModel, ItemEntity> itemModelToEntityConverter;
+        private IDbRepository<ItemEntity> itemDbRepository;
+        private ILoggerService logger;
         public ItemsRepositoryValidationService(
-            ILoggerRepository logger, 
-            IDbRepository<ItemEntity> dbRepository,
-            IConverter<ItemEntity, ItemModel> entityConverter,
-            IConverter<ItemModel, ItemEntity> modelConverter)
+            ILoggerService logger, 
+            IDbRepository<ItemEntity> itemDbRepository,
+            IConverter<ItemEntity, ItemModel> itemEntityToModelConverter,
+            IConverter<ItemModel, ItemEntity> itemModelToEntityConverter)
         {
             this.logger = logger;
-            this.dbRepository = dbRepository;
-            this.entityConverter = entityConverter;
-            this.modelConverter = modelConverter;
+            this.itemDbRepository = itemDbRepository;
+            this.itemEntityToModelConverter = itemEntityToModelConverter;
+            this.itemModelToEntityConverter = itemModelToEntityConverter;
         }
         public async Task<int> AddItemAsync(ItemModel game)
         {
             try
             {
-                var gameEntity = await modelConverter.Convert(game); 
-                int id = await dbRepository.Add(gameEntity);
-                await logger.LogAsync("GameValidation", $"Данные об игре  №{gameEntity.Id} были занесены успешно", LogState.Success);
+                var itemEntity = await itemModelToEntityConverter.ConvertAsync(game);
+                if (itemEntity == null)
+                    throw new ArgumentNullException();
+                int id = await itemDbRepository.Add(itemEntity);
+                await logger.LogAsync("ItemValidService", $"данные о предмете №{itemEntity.Id} были занесены успешно", LogType.Success);
                 return id;
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("GameValidation", $"add data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("ItemValidService", $"добавление данных - {ex.Message}", LogType.Error);
                 return -1;
             }
         }
@@ -42,54 +44,56 @@ namespace Auction.Application.Services
         {
             try
             {
-                await dbRepository.Delete(id);
-                await logger.LogAsync("GameValidation", $"игра №{id} была удалена успешно", LogState.Success);
+                await itemDbRepository.Delete(id);
+                await logger.LogAsync("ItemValidService", $"предмет №{id} был удален успешно", LogType.Success);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("GameValidation", $"rm data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("ItemValidService", $"удаление данных - {ex.Message}", LogType.Error);
             }
         }
         public async Task UpdateItemAsync(int id, ItemModel game)
         {
             try
             {
-                var gameEntity = await modelConverter.Convert(game);
-                await dbRepository.Update(id, gameEntity);
-                await logger.LogAsync("GameValidation", $"игра №{id} была обновлена успешно", LogState.Success);
+                var itemEntity = await itemModelToEntityConverter.ConvertAsync(game);
+                await itemDbRepository.Update(id, itemEntity);
+                await logger.LogAsync("ItemValidService", $"предмет №{id} был обновлен успешно", LogType.Success);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("GameValidation", $"upd data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("ItemValidService", $"обновление данных - {ex.Message}", LogType.Error);
             }
         }
-        public async Task<ItemModel> GetSingleItemAsync(int id)
+        public async Task<ItemModel?> GetSingleItemAsync(int id)
         {
             try
             {
-                var game = await dbRepository.Get(id);
-                await logger.LogAsync("GameValidation", $"игра №{id} была получена успешно", LogState.Success);
-                return await entityConverter.Convert(game);
+                var item = await itemDbRepository.Get(id);
+                if (item == null)
+                    throw new ArgumentNullException();
+                await logger.LogAsync("ItemValidService", $"предмет №{id} был получен удачно", LogType.Success);
+                return await itemEntityToModelConverter.ConvertAsync(item);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("GameValidation", $"get single data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("ItemValidService", $"получение данных - {ex.Message}", LogType.Error);
                 return null;
             }
         }
-        public async Task<List<ItemModel>> GetAllItemsAsync()
+        public async Task<List<ItemModel>?> GetAllItemsAsync()
         {
             try
             {
-                var games = await dbRepository.GetAll();
-                await logger.LogAsync("GameValidation", $"все игры были получены успешно", LogState.Success);
-                return games.Select(async g => await entityConverter.Convert(g))
+                var items = await itemDbRepository.GetAll();
+                await logger.LogAsync("ItemValidService", $"все предметы были получены успешно", LogType.Success);
+                return items.Select(async item => await itemEntityToModelConverter.ConvertAsync(item))
                     .Select(t=>t.Result)
-                    .ToList();//с ToListAsync() не сработало
+                    .ToList();
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("GameValidation", $"get all data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("ItemValidService", $"получение всех данных - {ex.Message}", LogType.Error);
                 return null;
             }
         }

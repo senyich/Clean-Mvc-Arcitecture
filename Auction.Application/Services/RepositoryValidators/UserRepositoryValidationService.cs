@@ -9,33 +9,35 @@ namespace Auction.Application.Services
 {
     public class UserRepositoryValidationService : IUserValidationService
     {
-        private IConverter<UserEntity, UserModel> entityConverter;
-        private IConverter<UserModel, UserEntity> modelConverter;
-        private IDbRepository<UserEntity> dbRepository;
-        private ILoggerRepository logger;
+        private IConverter<UserEntity, UserModel> userEntityToModelConverter;
+        private IConverter<UserModel, UserEntity> userModelToEntityConverter;
+        private IUserRepository userDbRepository;
+        private ILoggerService logger;
         public UserRepositoryValidationService(
-            ILoggerRepository logger, 
-            IDbRepository<UserEntity> dbRepository,
-            IConverter<UserEntity,UserModel> entityConverter,
-            IConverter<UserModel,UserEntity> modelConverter)
+            ILoggerService logger,
+            IUserRepository userDbRepository,
+            IConverter<UserEntity,UserModel> userEntityToModelConverter,
+            IConverter<UserModel,UserEntity> userModelToEntityConverter)
         {
-            this.dbRepository = dbRepository;
             this.logger = logger;
-            this.entityConverter = entityConverter;
-            this.modelConverter = modelConverter;
+            this.userDbRepository = userDbRepository;
+            this.userEntityToModelConverter = userEntityToModelConverter;
+            this.userModelToEntityConverter = userModelToEntityConverter;
         }
         public async Task<int> AddUserAsync(UserModel user)
         {
             try
             {
-                var userEntity = await modelConverter.Convert(user);
-                var id = await dbRepository.Add(userEntity);
-                await logger.LogAsync("UserValidator", $"Данные о пользователе  №{userEntity.Id} были занесены успешно", LogState.Success);
+                var userEntity = await userModelToEntityConverter.ConvertAsync(user);
+                if (userEntity == null)
+                    throw new ArgumentNullException();
+                var id = await userDbRepository.Add(userEntity);
+                await logger.LogAsync("UserValidator", $"данные о пользователе  №{userEntity.Id} были занесены успешно", LogType.Success);
                 return id;
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("UserValidator", $"add data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("UserValidator", $"добавление данных - {ex.Message}", LogType.Error);
                 return -1;
             }
         }
@@ -43,54 +45,73 @@ namespace Auction.Application.Services
         {
             try
             {
-                await dbRepository.Delete(id);
-                await logger.LogAsync("UserValidator", $"Пользователь №{id} был удален успешно", LogState.Success);
+                await userDbRepository.Delete(id);
+                await logger.LogAsync("UserValidator", $"пользователь №{id} был удален успешно", LogType.Success);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("UserValidator", $"rm data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("UserValidator", $"удаление данных - {ex.Message}", LogType.Error);
             }
         }
         public async Task UpdateUserAsync(int id, UserModel user)
         {
             try
             {
-                var userEntity = await modelConverter.Convert(user);
-                await dbRepository.Update(id, userEntity);
-                await logger.LogAsync("UserValidator", $"Пользователь №{id} был обновлен успешно", LogState.Success);
+                var userEntity = await userModelToEntityConverter.ConvertAsync(user);
+                await userDbRepository.Update(id, userEntity);
+                await logger.LogAsync("UserValidator", $"пользователь №{id} был обновлен успешно", LogType.Success);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("UserValidator", $"upd data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("UserValidator", $"обновление данных - {ex.Message}", LogType.Error);
             }
         }
-        public async Task<UserModel> GetUserAsync(int id)
+        public async Task<UserModel?> GetSingleUserAsync(int id)
         {
             try
             {
-                var user = await dbRepository.Get(id);
-                await logger.LogAsync("UserValidator", $"Пользователь №{id} был получен успешно", LogState.Success);
-                return await entityConverter.Convert(user);
+                var user = await userDbRepository.Get(id);
+                if (user == null)
+                    throw new ArgumentNullException();
+                await logger.LogAsync("UserValidator", $"пользователь №{id} был получен успешно", LogType.Success);
+                return await userEntityToModelConverter.ConvertAsync(user);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("UserValidator", $"get single data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("UserValidator", $"получение данных - {ex.Message}", LogType.Error);
                 return null;
             }
         }
-        public async Task<List<UserModel>> GetUsersAsync()
+        public async Task<List<UserModel>?> GetAllUsersAsync()
         {
             try
             {
-                var users = await dbRepository.GetAll();
-                await logger.LogAsync("UserValidator", $"Пользователи были получены успешно", LogState.Success);
-                return users.Select(async l => await entityConverter.Convert(l))
+                var users = await userDbRepository.GetAll();
+                await logger.LogAsync("UserValidator", $"пользователи были получены успешно", LogType.Success);
+                return users.Select(async l => await userEntityToModelConverter.ConvertAsync(l))
                     .Select(t=>t.Result)
-                    .ToList();//с ToListAsync() не сработало
+                    .ToList();
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("UserValidator", $"get all data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("UserValidator", $"получение всех данных - {ex.Message}", LogType.Error);
+                return null;
+            }
+        }
+
+        public async Task<UserModel?> GetSingleUserAsync(string username)
+        {
+            try
+            {
+                var user = await userDbRepository.GetSingleUserByUsername(username);
+                if (user == null)
+                    throw new ArgumentNullException();
+                await logger.LogAsync("UserValidator", $"пользователь №{user.Id} был получен успешно", LogType.Success);
+                return await userEntityToModelConverter.ConvertAsync(user);
+            }
+            catch (Exception ex)
+            {
+                await logger.LogAsync("UserValidator", $"получение данных о пользователе по имени - {ex.Message}", LogType.Error);
                 return null;
             }
         }

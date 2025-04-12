@@ -5,10 +5,10 @@ namespace Auction.Application.Abstractions
 {
     public interface ISecurityService
     {
-        Task<JwtSecurityToken> GenerateJWT(string tokenCredential, IEnumerable<Claim> claims);
-        Task<JwtSecurityToken> GenerateJWT(string tokenCredential);
-        bool VerifyPassword(string password, string hashedPassword);
-        string HashPassword(string password);
+        Task<JwtSecurityToken> GenerateEncodedJWT(string tokenCredential, IEnumerable<Claim> claims);
+        Task<JwtSecurityToken> GenerateEncodedJWT(string tokenCredential);
+        bool VerifyHashedData(string data, string hashedHashed);
+        string HashData(string data);
     }
 
 }

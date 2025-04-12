@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "W6AmazjT5QWDyQsQU85pP5BMlY6vOvUe3g/gX9MItkQ=",
+  "Hash": "I4wPNjHOZMpwIxzBeKB09Cy1MBIOUXHeKQywu/uEFFw=",
   "Source": "Auction.Web",
   "BasePath": "_content/Auction.Web",
   "Mode": "Default",
@@ -1174,6 +1174,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadedImages\\6c791dca-3369-44cf-ac21-e99a88815801.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\e8a5e718-7261-43a6-9f5b-4c773c93c229.png",
+      "SourceId": "Auction.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/Auction.Web",
+      "RelativePath": "UploadedImages/e8a5e718-7261-43a6-9f5b-4c773c93c229.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\e8a5e718-7261-43a6-9f5b-4c773c93c229.png"
     }
   ]
 }

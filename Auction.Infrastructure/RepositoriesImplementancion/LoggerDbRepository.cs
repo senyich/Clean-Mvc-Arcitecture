@@ -13,7 +13,7 @@ namespace Auction.Infrastructure.Repositories
             this.db = db;
             semaphore = new SemaphoreSlim(3);
         }
-        public async Task LogAsync(string sender, string message, LogState state)
+        public async Task AddLoggedData(string sender, string message, LogType state)
         {
             await semaphore.WaitAsync();
             try

@@ -6,7 +6,7 @@ namespace Auction.Application.Services
 {
     public class AuctionModelConverterService : IConverter<AuctionModel, AuctionEntity>
     {
-        public async Task<AuctionEntity> Convert(AuctionModel model)
+        public async Task<AuctionEntity> ConvertAsync(AuctionModel model)
         {
             var auction = new AuctionEntity();
             auction.BuyPrice = model.BuyPrice;

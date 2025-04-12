@@ -4,7 +4,7 @@ namespace Auction.Domain.Repositories.Abstraction
 {
     public interface ILoggerRepository
     {
-        Task LogAsync(string sender, string message, LogState state);
+        Task AddLoggedData(string sender, string message, LogType state);
     }
 }
 

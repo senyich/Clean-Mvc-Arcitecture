@@ -9,6 +9,7 @@ using Auction.Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Auction.Domain.Repositories;
 
 namespace Auction.Web.ServiceExtension
 {
@@ -17,8 +18,8 @@ namespace Auction.Web.ServiceExtension
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {     
             services.AddScoped<IDbRepository<AuctionEntity>, AuctionRepository>();
-            services.AddScoped<IDbRepository<UserEntity>, UserRepository>();
-            services.AddScoped<IDbRepository<ItemEntity>, GameRepository>();
+            services.AddScoped<IDbRepository<ItemEntity>, ItemRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILoggerRepository, LoggerDbRepository>();
             return services;
         }
@@ -47,6 +48,7 @@ namespace Auction.Web.ServiceExtension
             services.AddScoped<IFileLogisticService, ImagesLogisticService>();
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<IAuthService, UserAuthService>();
+            services.AddScoped<ILoggerService, DatabaseLoginService>();
             services.AddControllersWithViews();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options=>
             {

@@ -6,6 +6,7 @@ namespace Auction.Application.Services
     public class ImagesLogisticService : IFileLogisticService
     {
         private const string imagesSubFolderPath = "UploadedImages";
+        private readonly static object locker = new object();
         public async Task<string> SaveFileAsync(IFormFile file, string enviromentPath)
         {
             if (file == null || file.Length == 0)
@@ -23,15 +24,14 @@ namespace Auction.Application.Services
 
             return $"/{imagesSubFolderPath}/{uniqueFileName}";
         }
-        public Task DeleteFileAsync(string filePath, string enviromentPath)
+        public async Task DeleteFileAsync(string filePath, string enviromentPath)
         {
             var fullPath = Path.Combine(enviromentPath, filePath.TrimStart('/'));
             if (File.Exists(fullPath))
             {
-                File.Delete(fullPath);
+                lock(locker)
+                    File.Delete(fullPath);
             }
-            return Task.CompletedTask;
         }
-
     }
 }

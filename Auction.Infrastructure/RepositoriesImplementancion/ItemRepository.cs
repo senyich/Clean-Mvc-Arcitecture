@@ -4,11 +4,11 @@ using Auction.Domain.Entities;
 
 namespace Auction.Infrastructure.Repositories
 {
-    public class GameRepository : IDbRepository<ItemEntity>
+    public class ItemRepository : IDbRepository<ItemEntity>
     {
         private readonly AuctionContext db;
         private SemaphoreSlim semaphore;
-        public GameRepository(AuctionContext db)
+        public ItemRepository(AuctionContext db)
         {
             this.db = db;
             semaphore = new SemaphoreSlim(3);

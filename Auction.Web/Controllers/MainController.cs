@@ -1,12 +1,7 @@
 using Auction.Application.Abstractions;
-using Auction.Domain.Models;
-using Auction.Domain.Enums;
 using Auction.Web.ViewModels;
-using Auction.Application.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using Auction.Domain.Repositories.Abstraction;
 
 namespace Auction.Web.Controllers
 {
@@ -15,15 +10,12 @@ namespace Auction.Web.Controllers
         private IAuctionValidationService auctionRepository;
         private IItemValidationService itemRepository;
         private IUserValidationService userRepository;
-        private ILoggerRepository logger;
         public MainController(
             IAuctionValidationService auctionRepository,
             IItemValidationService gameRepository,
-            ILoggerRepository logger,
             IUserValidationService userRepository
             )
         {
-            this.logger = logger;
             this.auctionRepository = auctionRepository;
             this.itemRepository = gameRepository;
             this.userRepository = userRepository;
@@ -91,7 +83,7 @@ namespace Auction.Web.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
-            var user = await userRepository.GetUserAsync(int.Parse(userId));
+            var user = await userRepository.GetSingleUserAsync(int.Parse(userId));
             var userViewModel = new UserAuthViewModel()
             {
                 UserName = user.UserName

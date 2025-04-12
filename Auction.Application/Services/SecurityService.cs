@@ -12,7 +12,7 @@ namespace Auction.Application.Services
         private const int SaltSize = 16;
         private const int HashSize = 20;
         private const int Iterations = 500;
-        public async Task<JwtSecurityToken> GenerateJWT(string tokenCredential, IEnumerable<Claim> claims)
+        public async Task<JwtSecurityToken> GenerateEncodedJWT(string tokenCredential, IEnumerable<Claim> claims)
         {
             var credentialEncode = Encoding.UTF8.GetBytes(tokenCredential);
             var signingCredentials = new SigningCredentials(
@@ -26,7 +26,7 @@ namespace Auction.Application.Services
             return token;
         }
 
-        public async Task<JwtSecurityToken> GenerateJWT(string tokenCredential)
+        public async Task<JwtSecurityToken> GenerateEncodedJWT(string tokenCredential)
         {
             var credentialEncode = Encoding.UTF8.GetBytes(tokenCredential);
             var signingCredentials = new SigningCredentials(
@@ -39,7 +39,7 @@ namespace Auction.Application.Services
             return token;
         }
 
-        public string HashPassword(string password)
+        public string HashData(string password)
         {
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
@@ -54,7 +54,7 @@ namespace Auction.Application.Services
             var passwordHash = Convert.ToBase64String(hashBytes);
             return passwordHash;
         }
-        public bool VerifyPassword(string password, string hashedPassword)
+        public bool VerifyHashedData(string password, string hashedPassword)
         {
             var hashBytes = Convert.FromBase64String(hashedPassword);
 

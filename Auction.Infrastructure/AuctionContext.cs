@@ -13,14 +13,6 @@ namespace Auction.Infrastructure
             : base(options)
         { 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder
-                    .UseNpgsql("Host=62.113.107.207;Port=5432;DataBase=Auction;Username=senya;Password=animenit2002");
-            }
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

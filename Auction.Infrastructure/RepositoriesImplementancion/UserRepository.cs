@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Auction.Domain.Repositories.Abstraction;
 using Auction.Domain.Entities;
+using Auction.Domain.Repositories;
 
 namespace Auction.Infrastructure.Repositories
 {
-    public class UserRepository : IDbRepository<UserEntity>
+    public class UserRepository : IUserRepository
     {
         private readonly AuctionContext db;
         private SemaphoreSlim semaphore;
@@ -62,6 +63,18 @@ namespace Auction.Infrastructure.Repositories
             return user;
         }
         public async Task<List<UserEntity>> GetAll() => await db.Users.ToListAsync();
+
+        public async Task<UserEntity> GetSingleUserByUsername(string username)
+        {
+            var user = await db.Users
+                .Include(a => a.Games)
+                .ThenInclude(g => g.AuctionLot)
+                .Where(a => a.UserName == username)
+                .FirstOrDefaultAsync();
+            ArgumentNullException.ThrowIfNull(user);
+            return user;
+        }
+
         public async Task Update(int id, UserEntity entity)
         {
             await semaphore.WaitAsync(3);

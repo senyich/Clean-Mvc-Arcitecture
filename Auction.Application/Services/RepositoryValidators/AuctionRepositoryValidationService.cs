@@ -2,40 +2,41 @@
 using Auction.Domain.Entities;
 using Auction.Domain.Enums;
 using Auction.Domain.Models;
-using Auction.Domain.Repositories;
 using Auction.Domain.Repositories.Abstraction;
 
 namespace Auction.Application.Services
 {
     public class AuctionRepositoryValidationService : IAuctionValidationService
     {
-        private IConverter<AuctionEntity, AuctionModel> entityConverter;
-        private IConverter<AuctionModel, AuctionEntity> modelConverter;
-        private IDbRepository<AuctionEntity> dbRepository;
-        private ILoggerRepository logger;
+        private IConverter<AuctionEntity, AuctionModel> auctionEntityToModelConverter;
+        private IConverter<AuctionModel, AuctionEntity> auctionModelToEntityConverter;
+        private IDbRepository<AuctionEntity> auctionDbRepository;
+        private ILoggerService logger;
         public AuctionRepositoryValidationService(
-            ILoggerRepository logger,
-            IDbRepository<AuctionEntity> dbRepository, 
-            IConverter<AuctionEntity, AuctionModel> entityConverter,
-            IConverter<AuctionModel, AuctionEntity> modelConverter)
+            ILoggerService logger,
+            IDbRepository<AuctionEntity> auctionDbRepository, 
+            IConverter<AuctionEntity, AuctionModel> auctionEntityToModelConverter,
+            IConverter<AuctionModel, AuctionEntity> auctionModelToEntityConverter)
         {
-            this.dbRepository = dbRepository;
             this.logger = logger;
-            this.entityConverter = entityConverter;
-            this.modelConverter = modelConverter;
+            this.auctionDbRepository = auctionDbRepository;
+            this.auctionEntityToModelConverter = auctionEntityToModelConverter;
+            this.auctionModelToEntityConverter = auctionModelToEntityConverter;
         }
         public async Task<int> AddAuctionLotAsync(AuctionModel auction)
         {
             try
             {
-                var auctionEntity = await modelConverter.Convert(auction);
-                int id = await dbRepository.Add(auctionEntity);
-                await logger.LogAsync("AuctionValidator", $"Данные о лоте №{auctionEntity.Id} были занесены успешно", LogState.Success);
+                var auctionEntity = await auctionModelToEntityConverter.ConvertAsync(auction);
+                if (auctionEntity == null)
+                    throw new ArgumentNullException();
+                int id = await auctionDbRepository.Add(auctionEntity);
+                await logger.LogAsync("AuctionValidator", $"данные о лоте №{auctionEntity.Id} были занесены успешно", LogType.Success);
                 return id;
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("AuctionValidator", $"add data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("AuctionValidator", $"добавление данных - {ex.Message}", LogType.Error);
                 return -1;
             }
         }
@@ -43,55 +44,56 @@ namespace Auction.Application.Services
         {
             try
             {
-                await dbRepository.Delete(id);
-                await logger.LogAsync("AuctionValidator", $"Лот №{id} был удален успешно", LogState.Success);
+                await auctionDbRepository.Delete(id);
+                await logger.LogAsync("AuctionValidator", $"лот №{id} был удален успешно", LogType.Success);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("AuctionValidator", $"rm data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("AuctionValidator", $"удаление данных - {ex.Message}", LogType.Error);
             }
         }
         public async Task UpdateAuctionLotAsync(int id, AuctionModel auction)
         {
             try
             {
-                var auctionEntity = await modelConverter.Convert(auction);
-                await dbRepository.Update(id, auctionEntity);
-                await logger.LogAsync("AuctionValidator", $"Лот №{id} был обновлен успешно", LogState.Success);
+                var auctionEntity = await auctionModelToEntityConverter.ConvertAsync(auction);
+                await auctionDbRepository.Update(id, auctionEntity);
+                await logger.LogAsync("AuctionValidator", $"лот №{id} был обновлен успешно", LogType.Success);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("AuctionValidator", $"upd data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("AuctionValidator", $"обновление данных - {ex.Message}", LogType.Error);
             }
         }
-        public async Task<AuctionModel> GetAuctionLotAsync(int id)
+        public async Task<AuctionModel?> GetSingleAuctionLotAsync(int id)
         {
             try
             {
-                var auction = await dbRepository.Get(id);
-                await logger.LogAsync("AuctionValidator", $"Лот №{id} был получен успешно", LogState.Success);
-                return await entityConverter.Convert(auction);
+                var auction = await auctionDbRepository.Get(id);
+                if (auction == null)
+                    throw new ArgumentNullException();
+                await logger.LogAsync("AuctionValidator", $"лот №{id} был получен успешно", LogType.Success);
+                return await auctionEntityToModelConverter.ConvertAsync(auction);
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("AuctionValidator", $"get single data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("AuctionValidator", $"получение данных - {ex.Message}", LogType.Error);
                 return null;
             }
         }
-        public async Task<List<AuctionModel>> GetAllLotsAsync()
+        public async Task<List<AuctionModel>?> GetAllLotsAsync()
         {
             try
             {
-                var lots = await dbRepository.GetAll();
-                await logger.LogAsync("AuctionValidator", $"Все лоты получены успешно", LogState.Success);
-                var list = lots.Select(async l => await entityConverter.Convert(l))
-                    .Select(t=>t.Result)
+                var lots = await auctionDbRepository.GetAll();
+                await logger.LogAsync("AuctionValidator", $"все лоты получены успешно", LogType.Success);
+                return lots.Select(async lot => await auctionEntityToModelConverter.ConvertAsync(lot))
+                    .Select(t => t.Result)
                     .ToList();
-                return list;//с ToListAsync() не сработало
             }
             catch (Exception ex)
             {
-                await logger.LogAsync("AuctionValidator", $"get all data - {ex.Message}", LogState.Error);
+                await logger.LogAsync("AuctionValidator", $"получение всех данных - {ex.Message}", LogType.Error);
                 return null;
             }
         }
