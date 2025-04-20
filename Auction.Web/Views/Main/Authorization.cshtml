@@ -1,0 +1,177 @@
+@model UserAuthViewModel
+
+<div class="auth-container">
+    <div class="card glass-card rounded-4 auth-card">
+        <!-- Форма авторизации -->
+        <div class="auth-form @(Model.IsLoginMode ? "active" : "")" id="loginForm">
+            <h2 class="auth-title">Вход в систему</h2>
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary"></div>
+            <form asp-action="LoginUser" asp-controller="Form" method="post">
+                <input type="hidden" asp-for="IsLoginMode" value="true" />
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-user input-icon"></i>
+                    <input asp-for="UserName" class="form-control input-with-icon" placeholder="Имя пользователя" />
+                    <span asp-validation-for="UserName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input asp-for="Password" type="password" class="form-control input-with-icon" placeholder="Пароль" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-grad btn-auth">
+                    <i class="fas fa-sign-in-alt me-2"></i>Войти
+                </button>
+                <div class="form-switch" onclick="switchToRegister()">
+                    Нет аккаунта? Зарегистрироваться
+                </div>
+            </form>
+        </div>
+
+        <div class="auth-form @(!Model.IsLoginMode ? "active" : "")" id="registerForm">
+            <h2 class="auth-title">Регистрация</h2>
+
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary"></div>
+
+            <form asp-action="RegisterUser" method="post" asp-controller="Form">
+                <input type="hidden" asp-for="IsLoginMode" value="false" />
+
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-user input-icon"></i>
+                    <input asp-for="UserName" class="form-control input-with-icon" placeholder="Имя пользователя" />
+                    <span asp-validation-for="UserName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input asp-for="Password" type="password" class="form-control input-with-icon" placeholder="Пароль" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3 position-relative">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control input-with-icon" placeholder="Подтверждение пароля" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-grad btn-auth">
+                    <i class="fas fa-user-plus me-2"></i>Зарегистрироваться
+                </button>
+
+                <div class="form-switch" onclick="switchToLogin()">
+                    Уже есть аккаунт? Войти
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function switchToRegister() {
+            document.getElementById('loginForm').classList.remove('active');
+            document.getElementById('registerForm').classList.add('active');
+            document.querySelector('input[name="IsLoginMode"]').value = "false";
+            document.title = "Регистрация";
+        }
+
+        function switchToLogin() {
+            document.getElementById('registerForm').classList.remove('active');
+            document.getElementById('loginForm').classList.add('active');
+            document.querySelector('input[name="IsLoginMode"]').value = "true";
+            document.title = "Авторизация";
+        }
+
+    </script>
+}
+<style>
+    .auth-container {
+        perspective: 1000px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-card {
+        width: 100%;
+        max-width: 450px;
+        transition: all 0.6s ease;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .auth-form {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem;
+        opacity: 0;
+        transform: rotateY(180deg);
+        transition: all 0.6s ease;
+    }
+
+    .auth-form.active {
+        opacity: 1;
+        transform: rotateY(0deg);
+        position: relative;
+    }
+
+    .form-switch {
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .form-switch:hover {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .auth-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .auth-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--accent);
+        border-radius: 3px;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .input-with-icon {
+        padding-left: 40px !important;
+    }
+
+    .btn-auth {
+        width: 100%;
+        padding: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-top: 1rem;
+    }
+
+    .validation-summary {
+        margin-bottom: 1.5rem;
+    }
+</style>
