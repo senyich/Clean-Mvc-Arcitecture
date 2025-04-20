@@ -24,7 +24,7 @@ namespace Auction.Application.Services
             this.userEntityToModelConverter = userEntityToModelConverter;
             this.userModelToEntityConverter = userModelToEntityConverter;
         }
-        public async Task<int> AddUserAsync(UserModel user)
+        public async Task<int> CreateUserAsync(UserModel user)
         {
             try
             {

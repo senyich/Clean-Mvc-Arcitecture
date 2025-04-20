@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Auction.Domain\Auction.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\RepositoryValidators\" />
+  </ItemGroup>
+
 </Project>

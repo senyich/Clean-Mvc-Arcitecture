@@ -1,6 +1,6 @@
 ﻿namespace Auction.Domain.Entities
 {
-    public class AuctionEntity
+    public class OrderEntity
     {
         public int Id {get;set;}
         public int ItemId {get;set;}

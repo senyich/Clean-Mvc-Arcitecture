@@ -7,7 +7,7 @@
         public string PasswordHash {get;set;}
         public decimal Balance { get;set;}
         public ICollection<ItemEntity> Items {get;set;}
-        public ICollection<AuctionEntity> AuctionLots { get;set;}
+        public ICollection<OrderEntity> AuctionLots { get;set;}
     }
 }
 

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Auction.Domain.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Auction.Web.ServiceExtension
 {
@@ -22,7 +23,7 @@ namespace Auction.Web.ServiceExtension
         }
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {     
-            services.AddScoped<IDbRepository<AuctionEntity>, AuctionRepository>();
+            services.AddScoped<IDbRepository<OrderEntity>, AuctionRepository>();
             services.AddScoped<IDbRepository<ItemEntity>, ItemRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILoggerRepository, LoggerDbRepository>();
@@ -40,15 +41,16 @@ namespace Auction.Web.ServiceExtension
         }
         public static IServiceCollection AddServices(this IServiceCollection services, ConfigurationManager config)
         {
+            services.AddScoped<IConfigurationManager>(c=>config);
             services.AddScoped<IAuctionValidationService, AuctionRepositoryValidationService>();
             services.AddScoped<IItemValidationService, ItemsRepositoryValidationService>();
             services.AddScoped<IUserValidationService, UserRepositoryValidationService>();
-            services.AddScoped<IConverter<UserEntity, UserModel>, UserEntityConverterService>();
-            services.AddScoped<IConverter<UserModel,UserEntity>, UserModelConverterService>();
-            services.AddScoped<IConverter<AuctionModel,AuctionEntity>, AuctionModelConverterService>();
-            services.AddScoped<IConverter<AuctionEntity, AuctionModel>, AuctionEntityConverterService>();
-            services.AddScoped<IConverter<ItemEntity, ItemModel>, ItemEntityConverterService>();
-            services.AddScoped<IConverter<ItemModel,ItemEntity>, GameModelConverterService>();
+            services.AddScoped<IConverter<UserEntity, UserModel>, UserEntityToModelConverterService>();
+            services.AddScoped<IConverter<UserModel,UserEntity>, UserModelToEntityConverterService>();
+            services.AddScoped<IConverter<OrderModel,OrderEntity>, OrderModelToEntityConverterService>();
+            services.AddScoped<IConverter<OrderEntity, OrderModel>, OrderEntityToModelConverterService>();
+            services.AddScoped<IConverter<ItemEntity, ItemModel>, ItemEntityToModelConverterService>();
+            services.AddScoped<IConverter<ItemModel,ItemEntity>, ItemModelToEntityConverterService>();
             services.AddScoped<IFileLogisticService, ImagesLogisticService>();
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<IAuthService, UserAuthService>();

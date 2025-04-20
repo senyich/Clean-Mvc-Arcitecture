@@ -2,9 +2,9 @@
 
 namespace Auction.Domain.Models
 {
-    public class AuctionModel
+    public class OrderModel
     {
-        private AuctionModel(int id, int itemId, int ownerId, decimal currentPrice, decimal buyPrice, decimal minPriceUpdateRate)
+        private OrderModel(int id, int itemId, int ownerId, decimal currentPrice, decimal buyPrice, decimal minPriceUpdateRate)
         {
             Id = id;
             ItemId = itemId;
@@ -19,7 +19,7 @@ namespace Auction.Domain.Models
         public decimal CurrentPrice{get;}
         public decimal BuyPrice {get;}
         public decimal MinPriceUpdateRate {get;}
-        public static (AuctionModel model, string error) Create(int id,int itemId,int ownerId,decimal currentPrice, decimal buyPrice, decimal minPriceUpdateRate)
+        public static (OrderModel model, string error) Create(int id,int itemId,int ownerId,decimal currentPrice, decimal buyPrice, decimal minPriceUpdateRate)
         {
             StringBuilder errorBuilder = new StringBuilder();
             if(currentPrice <= 0 || buyPrice <= 0 || minPriceUpdateRate <= 0)
@@ -27,7 +27,7 @@ namespace Auction.Domain.Models
                 errorBuilder.Append("Недопустимые цены!");
                 return (null, errorBuilder.ToString())!;
             }
-            AuctionModel auctionModel = new AuctionModel(id, itemId, ownerId, currentPrice, buyPrice, minPriceUpdateRate);
+            OrderModel auctionModel = new OrderModel(id, itemId, ownerId, currentPrice, buyPrice, minPriceUpdateRate);
             return (auctionModel, string.Empty);
         }
     }

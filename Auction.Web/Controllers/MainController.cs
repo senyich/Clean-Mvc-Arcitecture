@@ -26,7 +26,7 @@ namespace Auction.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var games = await itemRepository.GetAllItemsAsync();
-            var auctions = await auctionRepository.GetAllLotsAsync();
+            var auctions = await auctionRepository.GetAllOrdersAsync();
             var users = await userRepository.GetAllUsersAsync();
             if (games != null && auctions!=null && users!=null)
             {
@@ -49,7 +49,7 @@ namespace Auction.Web.Controllers
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
             var games = await itemRepository.GetAllItemsAsync();
-            var auctions = await auctionRepository.GetAllLotsAsync();
+            var auctions = await auctionRepository.GetAllOrdersAsync();
             var view = new CreateLotViewModel()
             {
                 Items = games.Where(i=>i.OwnerId == int.Parse(userId)).ToList()

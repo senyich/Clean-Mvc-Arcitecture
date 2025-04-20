@@ -36,10 +36,10 @@ namespace Auction.Web.Controllers
         public async Task<IActionResult> AddAuctionLot(CreateLotViewModel model)
         {
             int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var (auctionModel, error) = AuctionModel.Create(0, model.ItemId, userId, model.CurrentPrice, model.BuyPrice,model.MinPriceUpdateRate);    
+            var (auctionModel, error) = OrderModel.Create(0, model.ItemId, userId, model.CurrentPrice, model.BuyPrice,model.MinPriceUpdateRate);    
             if(string.IsNullOrEmpty(error))
             {          
-                int id = await auctionRepository.AddAuctionLotAsync(auctionModel);
+                int id = await auctionRepository.CreateOrderAsync(auctionModel);
 
                 var tmpItem = await itemRepository.GetSingleItemAsync(model.ItemId);
 

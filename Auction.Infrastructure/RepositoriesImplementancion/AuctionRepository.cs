@@ -4,7 +4,7 @@ using Auction.Domain.Entities;
 
 namespace Auction.Infrastructure.Repositories
 {
-    public class AuctionRepository : IDbRepository<AuctionEntity>
+    public class AuctionRepository : IDbRepository<OrderEntity>
     {       
         private readonly AuctionContext db;
         private SemaphoreSlim semaphore;
@@ -13,7 +13,7 @@ namespace Auction.Infrastructure.Repositories
             this.db = db;
             semaphore = new SemaphoreSlim(3);
         }
-        public async Task<int> Add(AuctionEntity entity)
+        public async Task<int> Add(OrderEntity entity)
         {
             await semaphore.WaitAsync(3);
             try
@@ -38,13 +38,13 @@ namespace Auction.Infrastructure.Repositories
             catch(Exception) { throw; }
             finally { semaphore.Release(); }
         }
-        public async Task<AuctionEntity> Get(int id)
+        public async Task<OrderEntity> Get(int id)
         {
             var auction = await db.AuctionsLots.FirstOrDefaultAsync(a => a.Id == id);
             ArgumentNullException.ThrowIfNull(auction);
             return auction;
         }
-        public async Task Update(int id, AuctionEntity entity)
+        public async Task Update(int id, OrderEntity entity)
         {
             await semaphore.WaitAsync(3);
             try
@@ -60,7 +60,7 @@ namespace Auction.Infrastructure.Repositories
             catch(Exception) { throw; }
             finally { semaphore.Release(); }
         }
-        public async Task<List<AuctionEntity>> GetAll() => await db.AuctionsLots.ToListAsync();
+        public async Task<List<OrderEntity>> GetAll() => await db.AuctionsLots.ToListAsync();
  
     }
 }

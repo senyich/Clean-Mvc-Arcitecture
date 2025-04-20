@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Auction.Application.Abstractions;
 using Auction.Domain.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Auction.Application.Services
 {
@@ -9,11 +10,14 @@ namespace Auction.Application.Services
     {
         private ISecurityService securityService;
         private IUserValidationService userValidationService;
+        private IConfigurationManager config;
         public UserAuthService(
             ISecurityService securityService,
-            IUserValidationService userValidationService
+            IUserValidationService userValidationService,
+            IConfigurationManager config
         )
         {
+            this.config = config;
             this.userValidationService = userValidationService;
             this.securityService = securityService;
         }
@@ -26,7 +30,7 @@ namespace Auction.Application.Services
             var (newUser, error) = UserModel.Create(0, username, passwordHash,1000);
             if (newUser == null)
                 throw new Exception(error);
-            await userValidationService.AddUserAsync(newUser);
+            await userValidationService.CreateUserAsync(newUser);
         }
         public async Task<string> LoginAsync(string username, string password)
         {
@@ -37,8 +41,7 @@ namespace Auction.Application.Services
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
-            //по хорошему нужно это имя хранить в засекреченном формате
-            var tokenName = $"younkyounkyounkyounkyounkyounkyounkyounkyounk";
+            var tokenName = config["JwtTokenCode"];
             var token = await securityService.GenerateEncodedJWT(tokenName, claims);
             var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
             return stringToken;
