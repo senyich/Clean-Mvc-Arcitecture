@@ -1,0 +1,18 @@
+using Auction.Application.Abstractions;
+using Auction.Domain.Entities;
+using Auction.Domain.Models;
+
+namespace Auction.Application.Services
+{
+    public class UserEntityConverterService : IConverter<UserEntity, UserModel>
+    {
+        public async Task<UserModel> ConvertAsync(UserEntity obj)
+        {
+            var user = UserModel.Create(obj.Id, obj.UserName, obj.PasswordHash, obj.Balance);
+            if(user.model!=null)
+                return user.model;
+            else
+                throw new ArgumentNullException(user.error);
+        }
+    }
+}
