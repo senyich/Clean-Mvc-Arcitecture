@@ -33,8 +33,8 @@ namespace OrderWebsite.Web.ServiceExtension
         {
             string ordersConnString = config.GetConnectionString("OrdersDb")!;
             string logConnString = config.GetConnectionString("LogsDb")!;
-            string itemsConnString = config.GetConnectionString("LogsDb")!;
-            services.AddDbContext<OrdersContext>(option=>option
+            string itemsConnString = config.GetConnectionString("ItemsDb")!;
+            services.AddDbContext<TradingExchangeContext>(option=>option
                                 .UseNpgsql(ordersConnString));
             services.AddDbContext<LoggerContext>(option=>option
                                 .UseNpgsql(logConnString));    

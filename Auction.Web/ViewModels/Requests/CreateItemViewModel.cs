@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OrderWebsite.Web.ViewModels
 {
-    public class ItemViewModel
+    public class CreateItemViewModel
     {
         public int Id { get; set; }
         

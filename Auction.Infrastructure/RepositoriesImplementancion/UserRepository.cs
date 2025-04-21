@@ -6,9 +6,9 @@ namespace OrderWebsite.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly OrdersContext db;
+        private readonly TradingExchangeContext db;
         private SemaphoreSlim semaphore;
-        public UserRepository(OrdersContext db)
+        public UserRepository(TradingExchangeContext db)
         {
             this.db = db;
             semaphore = new SemaphoreSlim(3);
@@ -54,7 +54,6 @@ namespace OrderWebsite.Infrastructure.Repositories
         {
             var user = await db.Users
                 .FirstOrDefaultAsync(a => a.Id == id);
-            ArgumentNullException.ThrowIfNull(user);
             return user;
         }
         public async Task<List<UserEntity>> GetAll() => await db.Users.ToListAsync();
@@ -64,7 +63,6 @@ namespace OrderWebsite.Infrastructure.Repositories
             var user = await db.Users
                 .Include(a=>a.Orders)
                 .FirstOrDefaultAsync(a => a.UserName == username);
-            ArgumentNullException.ThrowIfNull(user);
             return user;
         }
         public async Task Update(int id, UserEntity entity)

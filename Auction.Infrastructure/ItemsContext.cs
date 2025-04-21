@@ -9,7 +9,6 @@ namespace OrderWebsite.Infrastructure
         public ItemsContext(DbContextOptions<ItemsContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

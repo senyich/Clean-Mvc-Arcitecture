@@ -6,6 +6,7 @@ namespace OrderWebsite.Web.ViewModels
 {
     public class UserDataViewModel
     {
+        public int Id { get; set; }
         public string UserName { get; set; } = string.Empty;
         public decimal Balance { get; set; } 
         public List<ItemModel> Items {get;set;} = new List<ItemModel>();

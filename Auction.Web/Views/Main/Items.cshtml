@@ -22,7 +22,7 @@
                             <th class="text-white fw-bold">Название</th>
                             <th class="text-white fw-bold">Описание</th>
                             <th class="text-white fw-bold">Изображение</th>
-                            <th class="text-white fw-bold">Привязанный аукцион</th>
+                            <th class="text-white fw-bold">Ордер</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,11 +45,11 @@
                                 <td class="text-white">
                                     @if (item.OrderId > 0)
                                     {
-                                        <span class="badge bg-success">Аукцион #@item.OrderId</span>
+                                        <span class="badge bg-success">Ордер #@item.OrderId</span>
                                     }
                                     else
                                     {
-                                        <span class="badge bg-secondary">Не привязан</span>
+                                        <span class="badge bg-secondary">Не продается</span>
                                     }
                                 </td>
                                 <td><span class="badge bg-success">Владелец: #@Model.Users.FirstOrDefault(u=>u.Id == item.OwnerId).UserName</span></td

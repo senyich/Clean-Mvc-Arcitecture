@@ -104,6 +104,8 @@ namespace OrderWebsite.Application.Services
             try
             {
                 var user = await userDbRepository.GetSingleUserByUsername(username);
+                if (user == null)
+                    return null;
                 await logger.LogAsync("UserValidator", $"пользователь №{user.Id} был получен успешно", LogType.Success);
                 return await userEntityToModelConverter.ConvertAsync(user);
             }

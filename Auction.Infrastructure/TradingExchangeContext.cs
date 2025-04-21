@@ -3,16 +3,14 @@ using OrderWebsite.Domain.Entities;
 
 namespace OrderWebsite.Infrastructure
 {
-    public class OrdersContext : DbContext
+    public class TradingExchangeContext : DbContext
     {
         public DbSet<OrderEntity> Orders { get; set; }
-        public DbSet<ItemEntity> Items { get; set; }
         public DbSet<UserEntity> Users { get; set; }
-        public OrdersContext() { }
-        public OrdersContext(DbContextOptions<OrdersContext> options)
+        public TradingExchangeContext() { }
+        public TradingExchangeContext(DbContextOptions<TradingExchangeContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

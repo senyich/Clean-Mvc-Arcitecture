@@ -10,7 +10,6 @@ namespace OrderWebsite.Infrastructure
         public LoggerContext(DbContextOptions<LoggerContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
     }
 }

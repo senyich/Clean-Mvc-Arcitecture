@@ -46,7 +46,8 @@
             </div>
             <!-- Список игр -->
             <div class="card glass-card rounded-4 p-4" id="games">
-                @if (Model.Items != null && Model.Items.Any())
+                <h5 class="text-white">Ваши предметы</h5>
+                @if (Model.Items != null)
                 {
                     <div class="table-responsive">
                         <table class="table table-borderless text-white">
@@ -73,10 +74,10 @@
                 {
                     <div class="text-center py-5">
                         <i class="fas fa-gamepad fa-4x mb-3 text-white-50"></i>
-                        <h5 class="text-white">У вас пока нет игр</h5>
-                        <p class="text-white-50">Добавьте свою первую игру для участия в аукционах</p>
+                        <h5 class="text-white">У вас пока нет предметов</h5>
+                        <p class="text-white-50">Добавьте свою первую игру для участия в торгах</p>
                         <button class="btn btn-grad">
-                            <i class="fas fa-plus me-2"></i>Добавить игру
+                                <a class="nav-link" asp-area="" asp-controller="Main" asp-action="CreateNewItem">Создать выдуманный предмет</a>
                         </button>
                     </div>
                 }

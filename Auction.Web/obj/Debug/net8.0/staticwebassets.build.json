@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5ts/zMOprUCXc6+F7N4sxyIGEaQJ6oikBF4kpkk0RVo=",
+  "Hash": "0NuILLgBs1hIzBT7xrS0nXimlCAOBuxh7UsLtkelcT0=",
   "Source": "OrderWebsite.Web",
   "BasePath": "_content/OrderWebsite.Web",
   "Mode": "Default",
@@ -1176,6 +1176,25 @@
       "OriginalItemSpec": "wwwroot\\UploadedImages\\178468ad-fed6-4363-8b89-bf134ba5cf80.jfif"
     },
     {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\1d343c41-a59e-4f6a-9c16-dd09d28b3c9d.png",
+      "SourceId": "OrderWebsite.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/OrderWebsite.Web",
+      "RelativePath": "UploadedImages/1d343c41-a59e-4f6a-9c16-dd09d28b3c9d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\1d343c41-a59e-4f6a-9c16-dd09d28b3c9d.png"
+    },
+    {
       "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\486e1e2d-29d0-479c-bd24-748f54959c65.jfif",
       "SourceId": "OrderWebsite.Web",
       "SourceType": "Discovered",
@@ -1193,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadedImages\\486e1e2d-29d0-479c-bd24-748f54959c65.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\56af722d-c3ac-4ef7-9e83-2440549305f6.png",
+      "SourceId": "OrderWebsite.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/OrderWebsite.Web",
+      "RelativePath": "UploadedImages/56af722d-c3ac-4ef7-9e83-2440549305f6.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\56af722d-c3ac-4ef7-9e83-2440549305f6.png"
     },
     {
       "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\5d438395-273c-41a8-9ade-262476cbdad8.jpg",
@@ -1252,6 +1290,25 @@
       "OriginalItemSpec": "wwwroot\\UploadedImages\\7b18ad4e-44d3-46fd-ad0c-0e09143dcfa4.png"
     },
     {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\9724be71-01e4-4964-a9ea-22cdf76d9e73.png",
+      "SourceId": "OrderWebsite.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/OrderWebsite.Web",
+      "RelativePath": "UploadedImages/9724be71-01e4-4964-a9ea-22cdf76d9e73.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\9724be71-01e4-4964-a9ea-22cdf76d9e73.png"
+    },
+    {
       "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\e8a5e718-7261-43a6-9f5b-4c773c93c229.png",
       "SourceId": "OrderWebsite.Web",
       "SourceType": "Discovered",
@@ -1269,6 +1326,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadedImages\\e8a5e718-7261-43a6-9f5b-4c773c93c229.png"
+    },
+    {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\ecd1d832-66aa-4ca7-b901-e2c8db7aa4bc.png",
+      "SourceId": "OrderWebsite.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/OrderWebsite.Web",
+      "RelativePath": "UploadedImages/ecd1d832-66aa-4ca7-b901-e2c8db7aa4bc.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\ecd1d832-66aa-4ca7-b901-e2c8db7aa4bc.png"
     }
   ]
 }

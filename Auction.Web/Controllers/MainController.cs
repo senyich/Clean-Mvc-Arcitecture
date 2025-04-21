@@ -28,22 +28,40 @@ namespace OrderWebsite.Web.Controllers
             var games = await itemRepository.GetAllItemsAsync();
             var auctions = await auctionRepository.GetAllOrdersAsync();
             var users = await userRepository.GetAllUsersAsync();
-            if (games != null && auctions!=null && users!=null)
+            if (games == null && auctions == null && users == null)
+                return View(new OrdersAndItemsViewModel());
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
             {
                 var view = new OrdersAndItemsViewModel()
                 {
+                    UserId = 0,
                     Orders = auctions,
                     Items = games,
                     Users = users
                 };
                 return View(view);
             }
-            else 
-                return View(new OrdersAndItemsViewModel());
+            else
+            {
+                if (games != null && auctions != null && users != null)
+                {
+                    var view = new OrdersAndItemsViewModel()
+                    {
+                        UserId = int.Parse(userId),
+                        Orders = auctions,
+                        Items = games,
+                        Users = users
+                    };
+                    return View(view);
+                }
+                else
+                    return View(new OrdersAndItemsViewModel());
+            }
         }
         [HttpGet]
-        [Route("/CreateLot")]
-        public async Task<IActionResult> CreateLot()
+        [Route("[action]")]
+        public async Task<IActionResult> CreateOrder()
         { 
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
@@ -57,7 +75,7 @@ namespace OrderWebsite.Web.Controllers
             return View(view);
         } 
         [HttpGet]
-        [Route("/CreateNewItem")]
+        [Route("[action]")]
         public async Task<IActionResult> CreateNewItem()
         { 
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -66,7 +84,7 @@ namespace OrderWebsite.Web.Controllers
             return View();
         }
         [HttpGet]
-        [Route("/Items")] 
+        [Route("[action]")]
         public async Task<IActionResult> Items()
         {
             var games = await itemRepository.GetAllItemsAsync();
@@ -84,14 +102,14 @@ namespace OrderWebsite.Web.Controllers
                 return View(new AllItemsViewModel());
         }
         [HttpGet]
-        [Route("/Authorization")]
+        [Route("[action]")]
         public async Task<IActionResult> Authorization()
         {
             var usrModel = new UserAuthViewModel();
             return View(usrModel);
         }
         [HttpGet]
-        [Route("/UserCabinet")]
+        [Route("[action]")]
         public async Task<IActionResult> UserCabinet()
         {
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -103,6 +121,7 @@ namespace OrderWebsite.Web.Controllers
             {
                 var userViewModel = new UserDataViewModel()
                 {
+                    Id = user.Id,
                     UserName = user.UserName,
                     Balance = user.Balance,
                     Items = items.Where(u=>u.Id == int.Parse(userId)).ToList()

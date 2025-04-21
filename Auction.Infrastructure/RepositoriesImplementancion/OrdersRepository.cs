@@ -6,9 +6,9 @@ namespace OrderWebsite.Infrastructure.Repositories
 {
     public class OrdersRepository : IDbRepository<OrderEntity>
     {       
-        private readonly OrdersContext db;
+        private readonly TradingExchangeContext db;
         private SemaphoreSlim semaphore;
-        public OrdersRepository(OrdersContext db)
+        public OrdersRepository(TradingExchangeContext db)
         {
             this.db = db;
             semaphore = new SemaphoreSlim(3);

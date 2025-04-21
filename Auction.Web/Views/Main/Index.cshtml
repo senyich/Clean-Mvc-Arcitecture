@@ -18,27 +18,45 @@
                     <thead class="glass-card">
                         <tr>
                             <th class="text-white fw-bold">Лот №</th>
+                            <th class="text-white fw-bold">Владелец</th>
                             <th class="text-white fw-bold">Предмет</th>
                             <th class="text-white fw-bold">Лого предмета</th>
                             <th class="text-white fw-bold">Описание</th>
-                            <th class="text-white fw-bold">Текущая цена</th>
-                            <th class="text-white fw-bold">Минимальный шаг повышения ставки</th>
-                            <th class="text-white fw-bold">Цена выкупа</th>
+                            <th class="text-white fw-bold">Цена</th>
+                            <th class="text-white fw-bold">Действие</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var order in Model.Orders)
                         {
                             <tr class="glass-card-hover">
-                                @try{
+                                @try
+                                {
                                     <td class="text-white">@order.Id</td>
-                                    <td class="text-white">Владелец: @Model.Users.FirstOrDefault(u=>u.Id == order.OwnerId).UserName</td>
+                                    <td class="text-white">@Model.Users.FirstOrDefault(u => u.Id == order.OwnerId).UserName</td>
                                     <td class="text-white">@Model.Items.First(g => g.OrderId == order.Id).Name</td>
-                                    <td class="text-white"><img src="@Model.Items.First(g => g.OrderId == order.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);"/></td>
+                                    <td class="text-white"><img src="@Model.Items.First(g => g.OrderId == order.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);" /></td>
                                     <td class="text-white-50">@Model.Items.First(g => g.OrderId == order.Id).Description</td>
                                     <td class="text-danger fw-bold">@order.BuyPrice.ToString("N0") ₽</td>
+                                    if (Model.UserId != 0 && Model.UserId != order.OwnerId)
+                                    {
+                                        <td>
+                                            <form asp-controller="Form" asp-action="BuyOrder" method="post">
+                                                <input type="hidden" name="orderId" value="@order.Id" />
+                                                <button type="submit" class="btn btn-outline-light">Купить</button>
+                                            </form>
+                                        </td>
+                                    }
+                                    else if (Model.UserId == order.OwnerId)
+                                    {
+                                        <td class="text-danger fw-bold">Ваш ордер</td>
+                                    }
+                                    else if (Model.UserId == 0)
+                                    {
+                                        <td class="text-danger fw-bold">Вы не авторизованы</td>
+                                    }
                                 }
-                                catch {}
+                                catch { }
                             </tr>
                         }
                     </tbody>

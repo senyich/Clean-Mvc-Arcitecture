@@ -4,12 +4,14 @@ using OrderWebsite.Domain.Models;
 using OrderWebsite.Domain.Enums;
 using OrderWebsite.Application.Abstractions;
 using System.Security.Claims;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 
 namespace OrderWebsite.Web.Controllers
 {
     public class FormController : Controller
     {
         private IOrderValidationService auctionRepository;
+        private IUserValidationService userValidator;
         private IAuthService authService;
         private IItemValidationService itemRepository;
         private ILoggerService logger;
@@ -21,6 +23,7 @@ namespace OrderWebsite.Web.Controllers
             IFileLogisticService fileLogisticService,
             IWebHostEnvironment environment,
             IItemValidationService itemRepository,
+            IUserValidationService userValidator,
             IAuthService authService
             )
         {
@@ -30,9 +33,10 @@ namespace OrderWebsite.Web.Controllers
             this.fileLogisticService = fileLogisticService;
             this.environment = environment;
             this.authService = authService;
+            this.userValidator = userValidator;
         }
         [HttpPost]
-        [Route("/Main/CreateOrder")]
+        [Route("/Api/CreateOrder")]
         public async Task<IActionResult> CreateOrder(CreateOrderViewModel model)
         {
             int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
@@ -53,8 +57,32 @@ namespace OrderWebsite.Web.Controllers
             return RedirectToAction("Index", "Main");
         }
         [HttpPost]
-        [Route("/Main/AddItem")]
-        public async Task<IActionResult> AddItem(ItemViewModel item)
+        [Route("/Api/BuyOrder")]
+        public async Task<IActionResult> BuyOrder(int orderId)
+        {
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if(userId == null)
+                return RedirectToAction("Authorization", "Main");
+
+            var user = await userValidator.GetSingleUserAsync(int.Parse(userId));
+            var item = (await itemRepository.GetAllItemsAsync()).FirstOrDefault(f => f.OrderId == orderId);
+            var order = await auctionRepository.GetSingleOrderAsync(orderId);
+            var owner = await userValidator.GetSingleUserAsync(order.OwnerId);
+
+            (ItemModel model, string error) newItem = ItemModel.Create(item.Id, item.Name, item.Description, item.ImgPath, 0, user.Id);
+            (UserModel model, string error) newUser = UserModel.Create(user.Id, user.UserName, user.PasswordHash, user.Balance - order.BuyPrice);
+            (UserModel model, string error) newOwner = UserModel.Create(owner.Id, owner.UserName, owner.PasswordHash, owner.Balance + order.BuyPrice);
+
+            await userValidator.UpdateUserAsync(user.Id, newUser.model);
+            await userValidator.UpdateUserAsync(owner.Id, newOwner.model);
+            await itemRepository.UpdateItemAsync(item.Id, newItem.model);
+            await auctionRepository.RemoveOrderAsync(orderId);
+
+            return RedirectToAction("Index", "Main");
+        }
+        [HttpPost]
+        [Route("/Api/AddItem")]
+        public async Task<IActionResult> AddItem(CreateItemViewModel item)
         {
             int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             string filePath = await fileLogisticService.SaveFileAsync(item.ImageFile, environment.WebRootPath);
@@ -72,7 +100,7 @@ namespace OrderWebsite.Web.Controllers
         }
 
         [HttpPost]
-        [Route("/Main/Register")]
+        [Route("/Api/Register")]
         public async Task<IActionResult> RegisterUser(UserAuthViewModel userFormData)
         {
             await authService.RegisterAsync(userFormData.UserName, userFormData.Password);
@@ -80,7 +108,7 @@ namespace OrderWebsite.Web.Controllers
         }
    
         [HttpPost]
-        [Route("/Main/Login")]
+        [Route("/Api/Login")]
         public async Task<IActionResult> LoginUser(UserAuthViewModel userFormData)
         {
             try
