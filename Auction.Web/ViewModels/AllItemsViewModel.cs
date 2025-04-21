@@ -1,6 +1,6 @@
-using Auction.Domain.Models;
+using OrderWebsite.Domain.Models;
 
-namespace Auction.Web.ViewModels
+namespace OrderWebsite.Web.ViewModels
 {
     public class AllItemsViewModel
     {

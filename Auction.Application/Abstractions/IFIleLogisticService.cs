@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace Auction.Application.Abstractions
+namespace OrderWebsite.Application.Abstractions
 {
     public interface IFileLogisticService
     {

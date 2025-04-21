@@ -8,11 +8,11 @@
     ".NETCoreApp,Version=v8.0": {
       "Auction.Web/1.0.0": {
         "dependencies": {
-          "Auction.Application": "1.0.0",
           "Auction.Domain": "1.0.0",
           "Auction.Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
-          "Microsoft.EntityFrameworkCore": "9.0.4"
+          "Microsoft.EntityFrameworkCore": "9.0.4",
+          "OrderWebsite.Application": "1.0.0"
         },
         "runtime": {
           "Auction.Web.dll": {}
@@ -318,16 +318,6 @@
         }
       },
       "System.Text.Encodings.Web/8.0.0": {},
-      "Auction.Application/1.0.0": {
-        "dependencies": {
-          "Auction.Domain": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
-          "Microsoft.AspNetCore.Http": "2.3.0"
-        },
-        "runtime": {
-          "Auction.Application.dll": {}
-        }
-      },
       "Auction.Domain/1.0.0": {
         "runtime": {
           "Auction.Domain.dll": {}
@@ -341,6 +331,16 @@
         },
         "runtime": {
           "Auction.Infrastructure.dll": {}
+        }
+      },
+      "OrderWebsite.Application/1.0.0": {
+        "dependencies": {
+          "Auction.Domain": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
+          "Microsoft.AspNetCore.Http": "2.3.0"
+        },
+        "runtime": {
+          "OrderWebsite.Application.dll": {}
         }
       }
     }
@@ -575,17 +575,17 @@
       "path": "system.text.encodings.web/8.0.0",
       "hashPath": "system.text.encodings.web.8.0.0.nupkg.sha512"
     },
-    "Auction.Application/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Auction.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Auction.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OrderWebsite.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

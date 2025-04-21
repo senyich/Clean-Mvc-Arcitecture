@@ -1,18 +1,18 @@
-using Auction.Application.Abstractions;
-using Auction.Domain.Models;
-using Auction.Web.ViewModels;
+using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Models;
+using OrderWebsite.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Auction.Web.Controllers
+namespace OrderWebsite.Web.Controllers
 {
     public class MainController : Controller
     {
-        private IAuctionValidationService auctionRepository;
+        private IOrderValidationService auctionRepository;
         private IItemValidationService itemRepository;
         private IUserValidationService userRepository;
         public MainController(
-            IAuctionValidationService auctionRepository,
+            IOrderValidationService auctionRepository,
             IItemValidationService gameRepository,
             IUserValidationService userRepository
             )
@@ -30,16 +30,16 @@ namespace Auction.Web.Controllers
             var users = await userRepository.GetAllUsersAsync();
             if (games != null && auctions!=null && users!=null)
             {
-                var view = new LotsAndItemsViewModel()
+                var view = new OrdersAndItemsViewModel()
                 {
-                    Auctions = auctions,
+                    Orders = auctions,
                     Items = games,
                     Users = users
                 };
                 return View(view);
             }
             else 
-                return View(new LotsAndItemsViewModel());
+                return View(new OrdersAndItemsViewModel());
         }
         [HttpGet]
         [Route("/CreateLot")]
@@ -50,7 +50,7 @@ namespace Auction.Web.Controllers
                 return RedirectToAction("Authorization", "Main");
             var games = await itemRepository.GetAllItemsAsync();
             var auctions = await auctionRepository.GetAllOrdersAsync();
-            var view = new CreateLotViewModel()
+            var view = new CreateOrderViewModel()
             {
                 Items = games.Where(i=>i.OwnerId == int.Parse(userId)).ToList()
             };

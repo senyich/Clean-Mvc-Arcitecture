@@ -965,14 +965,14 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Auction.Domain/1.0.0": {
+      "OrderWebsite.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/Auction.Domain.dll": {}
+          "bin/placeholder/OrderWebsite.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Auction.Domain.dll": {}
+          "bin/placeholder/OrderWebsite.Domain.dll": {}
         }
       }
     }
@@ -2922,19 +2922,19 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Auction.Domain/1.0.0": {
+    "OrderWebsite.Domain/1.0.0": {
       "type": "project",
-      "path": "../Auction.Domain/Auction.Domain.csproj",
-      "msbuildProject": "../Auction.Domain/Auction.Domain.csproj"
+      "path": "../Auction.Domain/OrderWebsite.Domain.csproj",
+      "msbuildProject": "../Auction.Domain/OrderWebsite.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Auction.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.4",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.4",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4",
+      "OrderWebsite.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2944,9 +2944,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj",
-      "projectName": "Auction.Infrastructure",
-      "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\OrderWebsite.Infrastructure.csproj",
+      "projectName": "OrderWebsite.Infrastructure",
+      "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\OrderWebsite.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Батя\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
@@ -2969,8 +2969,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
-              "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj"
+            "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\OrderWebsite.Domain.csproj": {
+              "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\OrderWebsite.Domain.csproj"
             }
           }
         }

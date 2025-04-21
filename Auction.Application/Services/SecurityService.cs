@@ -2,17 +2,17 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Auction.Application.Abstractions;
+using OrderWebsite.Application.Abstractions;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class SecurityService : ISecurityService
     {
         private const int SaltSize = 16;
         private const int HashSize = 20;
         private const int Iterations = 500;
-        public async Task<JwtSecurityToken> GenerateEncodedJWT(string tokenCredential, IEnumerable<Claim> claims)
+        public JwtSecurityToken GenerateEncodedJWT(string tokenCredential, IEnumerable<Claim> claims)
         {
             var credentialEncode = Encoding.UTF8.GetBytes(tokenCredential);
             var signingCredentials = new SigningCredentials(
@@ -26,7 +26,7 @@ namespace Auction.Application.Services
             return token;
         }
 
-        public async Task<JwtSecurityToken> GenerateEncodedJWT(string tokenCredential)
+        public JwtSecurityToken GenerateEncodedJWT(string tokenCredential)
         {
             var credentialEncode = Encoding.UTF8.GetBytes(tokenCredential);
             var signingCredentials = new SigningCredentials(
@@ -43,7 +43,6 @@ namespace Auction.Application.Services
         {
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
-
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Iterations);
             var hash = pbkdf2.GetBytes(HashSize);
 

@@ -1,4 +1,4 @@
-using Auction.Web.ServiceExtension;
+using OrderWebsite.Web.ServiceExtension;
 
 var builder = WebApplication.CreateBuilder(args);
 

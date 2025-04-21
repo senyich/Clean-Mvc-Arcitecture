@@ -1,4 +1,4 @@
-﻿@model LotsAndItemsViewModel
+﻿@model OrdersAndItemsViewModel
 @{
     ViewData["Title"] = "Аукционы";
 }
@@ -27,18 +27,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var lot in Model.Auctions)
+                        @foreach (var order in Model.Orders)
                         {
                             <tr class="glass-card-hover">
                                 @try{
-                                    <td class="text-white">@lot.Id</td>
-                                    <td class="text-white">Владелец: @Model.Users.FirstOrDefault(u=>u.Id == lot.OwnerId).UserName</td>
-                                    <td class="text-white">@Model.Items.First(g => g.AuctionId == lot.Id).Name</td>
-                                    <td class="text-white"><img src="@Model.Items.First(g => g.AuctionId == lot.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);"/></td>
-                                    <td class="text-white-50">@Model.Items.First(g => g.AuctionId == lot.Id).Description</td>
-                                    <td class="text-success fw-bold">@lot.CurrentPrice.ToString("N0") ₽</td>
-                                    <td class="text-warning">@lot.MinPriceUpdateRate.ToString("N0") ₽</td>
-                                    <td class="text-danger fw-bold">@lot.BuyPrice.ToString("N0") ₽</td>
+                                    <td class="text-white">@order.Id</td>
+                                    <td class="text-white">Владелец: @Model.Users.FirstOrDefault(u=>u.Id == order.OwnerId).UserName</td>
+                                    <td class="text-white">@Model.Items.First(g => g.OrderId == order.Id).Name</td>
+                                    <td class="text-white"><img src="@Model.Items.First(g => g.OrderId == order.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);"/></td>
+                                    <td class="text-white-50">@Model.Items.First(g => g.OrderId == order.Id).Description</td>
+                                    <td class="text-danger fw-bold">@order.BuyPrice.ToString("N0") ₽</td>
                                 }
                                 catch {}
                             </tr>

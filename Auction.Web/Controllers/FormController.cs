@@ -1,22 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
-using Auction.Web.ViewModels;
-using Auction.Domain.Models;
-using Auction.Domain.Enums;
-using Auction.Application.Abstractions;
+using OrderWebsite.Web.ViewModels;
+using OrderWebsite.Domain.Models;
+using OrderWebsite.Domain.Enums;
+using OrderWebsite.Application.Abstractions;
 using System.Security.Claims;
 
-namespace Auction.Web.Controllers
+namespace OrderWebsite.Web.Controllers
 {
     public class FormController : Controller
     {
-        private IAuctionValidationService auctionRepository;
+        private IOrderValidationService auctionRepository;
         private IAuthService authService;
         private IItemValidationService itemRepository;
         private ILoggerService logger;
         private IFileLogisticService fileLogisticService;
         private IWebHostEnvironment environment;
         public FormController(
-            IAuctionValidationService auctionRepository,
+            IOrderValidationService auctionRepository,
             ILoggerService logger,
             IFileLogisticService fileLogisticService,
             IWebHostEnvironment environment,
@@ -32,11 +32,11 @@ namespace Auction.Web.Controllers
             this.authService = authService;
         }
         [HttpPost]
-        [Route("/Main/AddAuctionLot")]
-        public async Task<IActionResult> AddAuctionLot(CreateLotViewModel model)
+        [Route("/Main/CreateOrder")]
+        public async Task<IActionResult> CreateOrder(CreateOrderViewModel model)
         {
             int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var (auctionModel, error) = OrderModel.Create(0, model.ItemId, userId, model.CurrentPrice, model.BuyPrice,model.MinPriceUpdateRate);    
+            var (auctionModel, error) = OrderModel.Create(0, model.ItemId, userId, model.BuyPrice);    
             if(string.IsNullOrEmpty(error))
             {          
                 int id = await auctionRepository.CreateOrderAsync(auctionModel);
@@ -63,7 +63,7 @@ namespace Auction.Web.Controllers
 
             if(string.IsNullOrEmpty(error))
             {
-                await itemRepository.AddItemAsync(itemModel);
+                await itemRepository.CreateItemAsync(itemModel);
                 await logger.LogAsync("FormController", "успешное добавление предмета", LogType.Success);
                 return RedirectToAction("Items", "Main");
             }

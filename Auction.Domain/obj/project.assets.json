@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj",
-      "projectName": "Auction.Domain",
-      "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\OrderWebsite.Domain.csproj",
+      "projectName": "OrderWebsite.Domain",
+      "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\OrderWebsite.Domain.csproj",
       "packagesPath": "C:\\Users\\Батя\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\obj\\",
       "projectStyle": "PackageReference",

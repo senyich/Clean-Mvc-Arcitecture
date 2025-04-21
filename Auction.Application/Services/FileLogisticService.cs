@@ -1,28 +1,30 @@
 using Microsoft.AspNetCore.Http;
-using Auction.Application.Abstractions;
+using OrderWebsite.Application.Abstractions;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class ImagesLogisticService : IFileLogisticService
     {
-        private const string imagesSubFolderPath = "UploadedImages";
+        private const string ImagesSubFolderPath = "UploadedImages";
+        private readonly string[] extensions = new string[6] { ".png", ".jpg", ".gif", ".bmp", ".ico", ".jpeg" };
         private readonly static object locker = new object();
+
         public async Task<string> SaveFileAsync(IFormFile file, string enviromentPath)
         {
-            if (file == null || file.Length == 0)
-                throw new ArgumentException("Файл пустой");
-            var uploadsFolderPath = Path.Combine(enviromentPath, imagesSubFolderPath);
+            string fileExtension = Path.GetExtension(file.FileName);
+            if (file == null || file.Length == 0 || !extensions.Contains(fileExtension.ToLower()))
+                throw new ArgumentException("Файл пустой или не соответствует формату");
+            var uploadsFolderPath = Path.Combine(enviromentPath, ImagesSubFolderPath);
 
             if (!Directory.Exists(uploadsFolderPath))
                 Directory.CreateDirectory(uploadsFolderPath);
 
-            var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            var uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
             var filePath = Path.Combine(uploadsFolderPath, uniqueFileName);
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
                 await file.CopyToAsync(fileStream);
-
-            return $"/{imagesSubFolderPath}/{uniqueFileName}";
+            return $"/{ImagesSubFolderPath}/{uniqueFileName}";
         }
         public async Task DeleteFileAsync(string filePath, string enviromentPath)
         {

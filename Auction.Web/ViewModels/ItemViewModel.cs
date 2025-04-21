@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Auction.Web.ViewModels
+namespace OrderWebsite.Web.ViewModels
 {
     public class ItemViewModel
     {

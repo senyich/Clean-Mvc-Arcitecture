@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2EsLUpub7jOCwOu+q2ZP2niFOCHPNfc4o4BQV7lsPzXVImNBQoQqpAjXvGCZh7k1Pqfxjs8xk3Vbf+UDmsBH6g==",
+  "dgSpecHash": "2S9xH/wuobuGgfF0oa5Rd3Zi2hl/d+s2oOk0wBFAvlTfhPkL83FikRoS9manBN/bdk34ixsi832/FG1CyeF93g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\Auction.Web.csproj",
+  "projectFilePath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\OrderWebsite.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Батя\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",
     "C:\\Users\\Батя\\.nuget\\packages\\microsoft.aspnetcore.http\\2.3.0\\microsoft.aspnetcore.http.2.3.0.nupkg.sha512",

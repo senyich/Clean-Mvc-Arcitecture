@@ -1,5 +1,5 @@
 
-namespace Auction.Domain.Entities
+namespace OrderWebsite.Domain.Entities
 {
     public class LogDataEntity
     {

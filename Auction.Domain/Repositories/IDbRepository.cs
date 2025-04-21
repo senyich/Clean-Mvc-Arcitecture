@@ -1,5 +1,5 @@
 ﻿
-namespace Auction.Domain.Repositories.Abstraction
+namespace OrderWebsite.Domain.Repositories.Abstraction
 {
     public interface IDbRepository<T> where T : class
     {

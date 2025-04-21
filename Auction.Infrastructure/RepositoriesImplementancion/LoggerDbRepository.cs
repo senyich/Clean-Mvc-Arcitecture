@@ -1,8 +1,8 @@
-using Auction.Domain.Repositories.Abstraction;
-using Auction.Domain.Entities;
-using Auction.Domain.Enums;
+using OrderWebsite.Domain.Repositories.Abstraction;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Enums;
 
-namespace Auction.Infrastructure.Repositories
+namespace OrderWebsite.Infrastructure.Repositories
 {
     public class LoggerDbRepository : ILoggerRepository
     {

@@ -1,6 +1,6 @@
-﻿using Auction.Domain.Enums;
+﻿using OrderWebsite.Domain.Enums;
 
-namespace Auction.Domain.Repositories.Abstraction
+namespace OrderWebsite.Domain.Repositories.Abstraction
 {
     public interface ILoggerRepository
     {

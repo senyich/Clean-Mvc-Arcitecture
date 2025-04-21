@@ -1,4 +1,4 @@
-namespace Auction.Domain.Enums
+namespace OrderWebsite.Domain.Enums
 {
     public enum LogType
     {

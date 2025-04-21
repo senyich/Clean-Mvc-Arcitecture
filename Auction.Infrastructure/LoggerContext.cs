@@ -1,8 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
-using Auction.Domain;
-using Auction.Domain.Entities;
-namespace Auction.Infrastructure
+using OrderWebsite.Domain;
+using OrderWebsite.Domain.Entities;
+namespace OrderWebsite.Infrastructure
 {
     public class LoggerContext : DbContext
     {

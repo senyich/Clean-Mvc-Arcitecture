@@ -1,8 +1,8 @@
-using Auction.Domain.Models;
+using OrderWebsite.Domain.Models;
 
-namespace Auction.Application.Abstractions
+namespace OrderWebsite.Application.Abstractions
 {
-    public interface IAuctionValidationService
+    public interface IOrderValidationService
     {
         Task<int> CreateOrderAsync(OrderModel order);
         Task<List<OrderModel>> GetAllOrdersAsync();

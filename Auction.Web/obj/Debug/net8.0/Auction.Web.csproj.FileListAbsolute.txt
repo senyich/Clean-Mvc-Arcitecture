@@ -126,10 +126,8 @@ C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/n
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Npgsql.dll
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
-C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Auction.Application.dll
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Auction.Domain.dll
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Auction.Infrastructure.dll
-C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Auction.Application.pdb
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Auction.Domain.pdb
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/bin/Debug/net8.0/Auction.Infrastructure.pdb
 C:/Users/Батя/Documents/GitHub/Clean-Mvc-Arcitecture/Auction.Web/obj/Debug/net8.0/Auction.Web.csproj.AssemblyReference.cache
@@ -320,10 +318,8 @@ C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\n
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Auction.Application.dll
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Auction.Domain.dll
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Auction.Infrastructure.dll
-C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Auction.Application.pdb
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Auction.Domain.pdb
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\Auction.Infrastructure.pdb
 C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\obj\Debug\net8.0\staticwebassets.build.json
@@ -398,3 +394,5 @@ C:\senyaaa\Clean-Mvc-Arcitecture\Auction.Web\obj\Debug\net8.0\refint\Auction.Web
 C:\senyaaa\Clean-Mvc-Arcitecture\Auction.Web\obj\Debug\net8.0\Auction.Web.pdb
 C:\senyaaa\Clean-Mvc-Arcitecture\Auction.Web\obj\Debug\net8.0\Auction.Web.genruntimeconfig.cache
 C:\senyaaa\Clean-Mvc-Arcitecture\Auction.Web\obj\Debug\net8.0\ref\Auction.Web.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\OrderWebsite.Application.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Web\bin\Debug\net8.0\OrderWebsite.Application.pdb

@@ -4,12 +4,12 @@
     "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\Auction.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj": {
+    "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\OrderWebsite.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj",
-        "projectName": "Auction.Application",
-        "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\OrderWebsite.Application.csproj",
+        "projectName": "OrderWebsite.Application",
+        "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\OrderWebsite.Application.csproj",
         "packagesPath": "C:\\Users\\Батя\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\obj\\",
         "projectStyle": "PackageReference",
@@ -249,8 +249,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj": {
-                "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\Auction.Application.csproj"
+              "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\OrderWebsite.Application.csproj": {
+                "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Application\\OrderWebsite.Application.csproj"
               },
               "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj": {
                 "projectPath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\Auction.Domain.csproj"

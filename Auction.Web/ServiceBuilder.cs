@@ -1,18 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using Auction.Application.Abstractions;
-using Auction.Application.Services;
-using Auction.Infrastructure;
-using Auction.Infrastructure.Repositories;
-using Auction.Domain.Repositories.Abstraction;
-using Auction.Domain.Entities;
-using Auction.Domain.Models;
+using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Application.Services;
+using OrderWebsite.Infrastructure;
+using OrderWebsite.Infrastructure.Repositories;
+using OrderWebsite.Domain.Repositories.Abstraction;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Auction.Domain.Repositories;
+using OrderWebsite.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Auction.Web.ServiceExtension
+namespace OrderWebsite.Web.ServiceExtension
 {
     public static class ServiceBuilder
     {
@@ -23,7 +23,7 @@ namespace Auction.Web.ServiceExtension
         }
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {     
-            services.AddScoped<IDbRepository<OrderEntity>, AuctionRepository>();
+            services.AddScoped<IDbRepository<OrderEntity>, OrdersRepository>();
             services.AddScoped<IDbRepository<ItemEntity>, ItemRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILoggerRepository, LoggerDbRepository>();
@@ -31,18 +31,21 @@ namespace Auction.Web.ServiceExtension
         }
         public static IServiceCollection AddDbContexts(this IServiceCollection services, ConfigurationManager config)
         {
-            string mainConnString = config.GetConnectionString("MainConnection")!;
-            string logConnString = config.GetConnectionString("LogDbConnection")!;
-            services.AddDbContext<AuctionContext>(option=>option
-                                .UseNpgsql(mainConnString));
+            string ordersConnString = config.GetConnectionString("OrdersDb")!;
+            string logConnString = config.GetConnectionString("LogsDb")!;
+            string itemsConnString = config.GetConnectionString("LogsDb")!;
+            services.AddDbContext<OrdersContext>(option=>option
+                                .UseNpgsql(ordersConnString));
             services.AddDbContext<LoggerContext>(option=>option
-                                .UseNpgsql(logConnString));
+                                .UseNpgsql(logConnString));    
+            services.AddDbContext<ItemsContext>(option=>option
+                                .UseNpgsql(itemsConnString));
             return services;
         }
         public static IServiceCollection AddServices(this IServiceCollection services, ConfigurationManager config)
         {
             services.AddScoped<IConfigurationManager>(c=>config);
-            services.AddScoped<IAuctionValidationService, AuctionRepositoryValidationService>();
+            services.AddScoped<IOrderValidationService, OrderRepositoryValidationService>();
             services.AddScoped<IItemValidationService, ItemsRepositoryValidationService>();
             services.AddScoped<IUserValidationService, UserRepositoryValidationService>();
             services.AddScoped<IConverter<UserEntity, UserModel>, UserEntityToModelConverterService>();

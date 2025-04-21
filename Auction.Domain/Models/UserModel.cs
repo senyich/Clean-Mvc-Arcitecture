@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Auction.Domain.Models
+namespace OrderWebsite.Domain.Models
 {
     public class UserModel
     {

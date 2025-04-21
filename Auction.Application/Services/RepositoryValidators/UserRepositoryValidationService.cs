@@ -1,11 +1,11 @@
-﻿using Auction.Application.Abstractions;
-using Auction.Domain.Entities;
-using Auction.Domain.Enums;
-using Auction.Domain.Models;
-using Auction.Domain.Repositories;
-using Auction.Domain.Repositories.Abstraction;
+﻿using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Enums;
+using OrderWebsite.Domain.Models;
+using OrderWebsite.Domain.Repositories;
+using OrderWebsite.Domain.Repositories.Abstraction;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class UserRepositoryValidationService : IUserValidationService
     {
@@ -82,7 +82,7 @@ namespace Auction.Application.Services
                 return null;
             }
         }
-        public async Task<List<UserModel>?> GetAllUsersAsync()
+        public async Task<List<UserModel>> GetAllUsersAsync()
         {
             try
             {
@@ -95,7 +95,7 @@ namespace Auction.Application.Services
             catch (Exception ex)
             {
                 await logger.LogAsync("UserValidator", $"получение всех данных - {ex.Message}", LogType.Error);
-                return null;
+                return new List<UserModel>();
             }
         }
 
@@ -104,15 +104,13 @@ namespace Auction.Application.Services
             try
             {
                 var user = await userDbRepository.GetSingleUserByUsername(username);
-                if (user == null)
-                    throw new ArgumentNullException();
                 await logger.LogAsync("UserValidator", $"пользователь №{user.Id} был получен успешно", LogType.Success);
                 return await userEntityToModelConverter.ConvertAsync(user);
             }
             catch (Exception ex)
             {
                 await logger.LogAsync("UserValidator", $"получение данных о пользователе по имени - {ex.Message}", LogType.Error);
-                return null;
+                throw;
             }
         }
     }

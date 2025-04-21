@@ -1,7 +1,7 @@
-﻿using Auction.Domain.Repositories.Abstraction;
-using Auction.Domain.Entities;
+﻿using OrderWebsite.Domain.Repositories.Abstraction;
+using OrderWebsite.Domain.Entities;
 
-namespace Auction.Domain.Repositories
+namespace OrderWebsite.Domain.Repositories
 {
     public interface IUserRepository : IDbRepository<UserEntity>
     {

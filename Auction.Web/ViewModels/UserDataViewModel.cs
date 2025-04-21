@@ -1,8 +1,8 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Auction.Domain.Models;
+using OrderWebsite.Domain.Models;
 
-namespace Auction.Web.ViewModels
+namespace OrderWebsite.Web.ViewModels
 {
     public class UserDataViewModel
     {

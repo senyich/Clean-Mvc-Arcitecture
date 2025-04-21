@@ -1,10 +1,10 @@
-﻿using Auction.Application.Abstractions;
-using Auction.Domain.Entities;
-using Auction.Domain.Enums;
-using Auction.Domain.Models;
-using Auction.Domain.Repositories.Abstraction;
+﻿using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Enums;
+using OrderWebsite.Domain.Models;
+using OrderWebsite.Domain.Repositories.Abstraction;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class ItemsRepositoryValidationService : IItemValidationService
     {        
@@ -23,13 +23,11 @@ namespace Auction.Application.Services
             this.itemEntityToModelConverter = itemEntityToModelConverter;
             this.itemModelToEntityConverter = itemModelToEntityConverter;
         }
-        public async Task<int> AddItemAsync(ItemModel game)
+        public async Task<int> CreateItemAsync(ItemModel game)
         {
             try
             {
                 var itemEntity = await itemModelToEntityConverter.ConvertAsync(game);
-                if (itemEntity == null)
-                    throw new ArgumentNullException();
                 int id = await itemDbRepository.Add(itemEntity);
                 await logger.LogAsync("ItemValidService", $"данные о предмете №{itemEntity.Id} были занесены успешно", LogType.Success);
                 return id;
@@ -70,15 +68,13 @@ namespace Auction.Application.Services
             try
             {
                 var item = await itemDbRepository.Get(id);
-                if (item == null)
-                    throw new ArgumentNullException();
                 await logger.LogAsync("ItemValidService", $"предмет №{id} был получен удачно", LogType.Success);
                 return await itemEntityToModelConverter.ConvertAsync(item);
             }
             catch (Exception ex)
             {
                 await logger.LogAsync("ItemValidService", $"получение данных - {ex.Message}", LogType.Error);
-                return null;
+                throw;
             }
         }
         public async Task<List<ItemModel>?> GetAllItemsAsync()
@@ -94,7 +90,7 @@ namespace Auction.Application.Services
             catch (Exception ex)
             {
                 await logger.LogAsync("ItemValidService", $"получение всех данных - {ex.Message}", LogType.Error);
-                return null;
+                return new List<ItemModel>();
             }
         }
     }

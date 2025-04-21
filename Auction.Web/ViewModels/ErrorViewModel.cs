@@ -1,4 +1,4 @@
-namespace Auction.Web.ViewModels
+namespace OrderWebsite.Web.ViewModels
 {
     public class ErrorViewModel
     {

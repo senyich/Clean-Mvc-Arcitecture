@@ -1,8 +1,8 @@
-﻿using Auction.Application.Abstractions;
-using Auction.Domain.Enums;
-using Auction.Domain.Repositories.Abstraction;
+﻿using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Enums;
+using OrderWebsite.Domain.Repositories.Abstraction;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class DatabaseLoggerService : ILoggerService
     {

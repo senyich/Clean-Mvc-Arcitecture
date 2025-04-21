@@ -1,0 +1,12 @@
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\bin\Debug\net8.0\OrderWebsite.Domain.deps.json
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\bin\Debug\net8.0\OrderWebsite.Domain.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\bin\Debug\net8.0\OrderWebsite.Domain.pdb
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.AssemblyInfoInputs.cache
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.AssemblyInfo.cs
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.sourcelink.json
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\refint\OrderWebsite.Domain.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\OrderWebsite.Domain.pdb
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Domain\obj\Debug\net8.0\ref\OrderWebsite.Domain.dll

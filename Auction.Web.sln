@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.34407.143
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auction.Web", "Auction.Web\Auction.Web.csproj", "{2BF98316-5B55-4E9A-8E94-69922CD5FEA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderWebsite.Web", "Auction.Web\OrderWebsite.Web.csproj", "{2BF98316-5B55-4E9A-8E94-69922CD5FEA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Domain", "Auction.Domain\Auction.Domain.csproj", "{B57E466D-A35F-45FA-B62C-6255FAD1F68A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderWebsite.Domain", "Auction.Domain\OrderWebsite.Domain.csproj", "{B57E466D-A35F-45FA-B62C-6255FAD1F68A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Application", "Auction.Application\Auction.Application.csproj", "{0365F737-31AD-4CB8-BFDA-BC3850509391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderWebsite.Application", "Auction.Application\OrderWebsite.Application.csproj", "{0365F737-31AD-4CB8-BFDA-BC3850509391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auction.Infrastructure", "Auction.Infrastructure\Auction.Infrastructure.csproj", "{F5D56ED6-1FB5-42AD-B8D9-A43ACFF25371}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderWebsite.Infrastructure", "Auction.Infrastructure\OrderWebsite.Infrastructure.csproj", "{F5D56ED6-1FB5-42AD-B8D9-A43ACFF25371}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

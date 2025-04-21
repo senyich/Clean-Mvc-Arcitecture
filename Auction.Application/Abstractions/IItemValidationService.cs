@@ -1,13 +1,13 @@
-using Auction.Domain.Models;
+using OrderWebsite.Domain.Models;
 
-namespace Auction.Application.Abstractions
+namespace OrderWebsite.Application.Abstractions
 {
     public interface IItemValidationService
     {
-        Task<int> AddItemAsync(ItemModel game);
+        Task<int> CreateItemAsync(ItemModel item);
         Task<List<ItemModel>> GetAllItemsAsync();
         Task<ItemModel?> GetSingleItemAsync(int id);
         Task RemoveItemAsync(int id);
-        Task UpdateItemAsync(int id, ItemModel game);
+        Task UpdateItemAsync(int id, ItemModel item);
     }
 }

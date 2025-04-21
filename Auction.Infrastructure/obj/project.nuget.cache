@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FbYNTgeOZt2Mow3HmtPbT4W/3xC2g3kg0GKi6XJLosgNnmQ0CCwCaHWlk3k2MHhcVg6u4atDg029FYxhNc90/A==",
+  "dgSpecHash": "T/lXwCHf2GlV8/nZf5nssNIkLahtBJ5asuVfhe0tdoQnaglgET+J6/VsjBMefJsfYODMRGjQFEUF/urytPee+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\Auction.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Infrastructure\\OrderWebsite.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Батя\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Батя\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

@@ -1,10 +1,10 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Auction.Application.Abstractions;
-using Auction.Domain.Models;
+using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Models;
 using Microsoft.Extensions.Configuration;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class UserAuthService : IAuthService
     {
@@ -42,7 +42,7 @@ namespace Auction.Application.Services
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
             var tokenName = config["JwtTokenCode"];
-            var token = await securityService.GenerateEncodedJWT(tokenName, claims);
+            var token = securityService.GenerateEncodedJWT(tokenName, claims);
             var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
             return stringToken;
         }

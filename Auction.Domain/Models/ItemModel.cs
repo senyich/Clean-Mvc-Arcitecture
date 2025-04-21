@@ -1,25 +1,25 @@
 ﻿using System.Text;
 
-namespace Auction.Domain.Models
+namespace OrderWebsite.Domain.Models
 {
     public class ItemModel
     {
-        private ItemModel(int id,string name, string description, string imgPath, int auctionId, int ownerId)
+        private ItemModel(int id,string name, string description, string imgPath, int orderId, int ownerId)
         {
             Id = id;
             Name = name;
             Description = description;
             ImgPath = imgPath;
-            AuctionId = auctionId;
+            OrderId = orderId;
             OwnerId = ownerId;
         }
         public int Id {get;}
-        public int AuctionId {get;}
+        public int OrderId {get;}
         public int OwnerId { get; }
         public string Name {get;}
         public string Description {get;}
         public string ImgPath {get;}
-        public static (ItemModel model, string error) Create(int id,string name, string description, string imgPath, int auctionId, int ownerId)
+        public static (ItemModel model, string error) Create(int id,string name, string description, string imgPath, int orderId, int ownerId)
         {
             StringBuilder errorBuilder = new StringBuilder();
             if(string.IsNullOrEmpty(name))
@@ -27,7 +27,7 @@ namespace Auction.Domain.Models
                 errorBuilder.Append("Имя пустое!");
                 return (null, errorBuilder.ToString())!;
             }
-            ItemModel gameModel = new ItemModel(id,name, description, imgPath, auctionId, ownerId);
+            ItemModel gameModel = new ItemModel(id,name, description, imgPath, orderId, ownerId);
             return (gameModel, string.Empty);
         }
     }

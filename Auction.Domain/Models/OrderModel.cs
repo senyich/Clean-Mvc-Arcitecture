@@ -1,33 +1,29 @@
 ﻿using System.Text;
 
-namespace Auction.Domain.Models
+namespace OrderWebsite.Domain.Models
 {
     public class OrderModel
     {
-        private OrderModel(int id, int itemId, int ownerId, decimal currentPrice, decimal buyPrice, decimal minPriceUpdateRate)
+        private OrderModel(int id, int itemId, int ownerId, decimal buyPrice)
         {
             Id = id;
             ItemId = itemId;
             OwnerId = ownerId;
-            CurrentPrice = currentPrice;
             BuyPrice = buyPrice;
-            MinPriceUpdateRate = minPriceUpdateRate;
         }
         public int Id { get; }
         public int ItemId { get; }
         public int OwnerId { get; }
-        public decimal CurrentPrice{get;}
         public decimal BuyPrice {get;}
-        public decimal MinPriceUpdateRate {get;}
-        public static (OrderModel model, string error) Create(int id,int itemId,int ownerId,decimal currentPrice, decimal buyPrice, decimal minPriceUpdateRate)
+        public static (OrderModel model, string error) Create(int id,int itemId,int ownerId, decimal buyPrice)
         {
             StringBuilder errorBuilder = new StringBuilder();
-            if(currentPrice <= 0 || buyPrice <= 0 || minPriceUpdateRate <= 0)
+            if(buyPrice <= 0)
             {
                 errorBuilder.Append("Недопустимые цены!");
                 return (null, errorBuilder.ToString())!;
             }
-            OrderModel auctionModel = new OrderModel(id, itemId, ownerId, currentPrice, buyPrice, minPriceUpdateRate);
+            OrderModel auctionModel = new OrderModel(id, itemId, ownerId, buyPrice);
             return (auctionModel, string.Empty);
         }
     }

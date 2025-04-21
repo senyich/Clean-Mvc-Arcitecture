@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Auction.Domain.Repositories.Abstraction;
-using Auction.Domain.Entities;
+using OrderWebsite.Domain.Repositories.Abstraction;
+using OrderWebsite.Domain.Entities;
 
-namespace Auction.Infrastructure.Repositories
+namespace OrderWebsite.Infrastructure.Repositories
 {
     public class ItemRepository : IDbRepository<ItemEntity>
     {
-        private readonly AuctionContext db;
+        private readonly ItemsContext db;
         private SemaphoreSlim semaphore;
-        public ItemRepository(AuctionContext db)
+        public ItemRepository(ItemsContext db)
         {
             this.db = db;
             semaphore = new SemaphoreSlim(3);
@@ -25,7 +25,6 @@ namespace Auction.Infrastructure.Repositories
             finally { semaphore.Release(); }
             return entity.Id;
         }
-
         public async Task Delete(int id)
         {
             await semaphore.WaitAsync(3);
@@ -43,7 +42,6 @@ namespace Auction.Infrastructure.Repositories
         public async Task<ItemEntity> Get(int id)
         {
             var game = await db.Items
-                .Include(a=>a.AuctionLot)
                 .FirstOrDefaultAsync(a => a.Id == id);
             ArgumentNullException.ThrowIfNull(game);
             return game;
@@ -55,7 +53,7 @@ namespace Auction.Infrastructure.Repositories
             {
                 await db.Items.Where(g=>g.Id == id)
                     .ExecuteUpdateAsync(g=>g
-                        .SetProperty(g=>g.AuctionId, entity.AuctionId)
+                        .SetProperty(g=>g.OrderId, entity.OrderId)
                         .SetProperty(g=>g.Description, entity.Description)
                         .SetProperty(g=>g.ImgPath, entity.ImgPath)
                         .SetProperty(g=>g.Name, entity.Name));

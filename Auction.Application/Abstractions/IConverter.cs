@@ -1,4 +1,5 @@
-﻿namespace Auction.Application.Abstractions
+﻿
+namespace OrderWebsite.Application.Abstractions
 {
     public interface IConverter<T,T2> where T : class where T2 : class
     {

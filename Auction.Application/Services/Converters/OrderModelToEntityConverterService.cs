@@ -1,18 +1,21 @@
-﻿using Auction.Application.Abstractions;
-using Auction.Domain.Entities;
-using Auction.Domain.Models;
+﻿using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Models;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class OrderModelToEntityConverterService : IConverter<OrderModel, OrderEntity>
     {
         public async Task<OrderEntity> ConvertAsync(OrderModel orderModel)
         {
-            var orderEntity = new OrderEntity();
+            var orderEntity = new OrderEntity()
+            {
+                BuyPrice = orderModel.BuyPrice,
+                ItemId = orderModel.ItemId,
+                OwnerId = orderModel.OwnerId
+            };
             orderEntity.BuyPrice = orderModel.BuyPrice;
-            orderEntity.CurrentPrice = orderModel.CurrentPrice;
             orderEntity.ItemId = orderModel.ItemId;
-            orderEntity.MinPriceUpdateRate = orderModel.MinPriceUpdateRate;
             orderEntity.OwnerId = orderModel.OwnerId;
             return orderEntity;
         }

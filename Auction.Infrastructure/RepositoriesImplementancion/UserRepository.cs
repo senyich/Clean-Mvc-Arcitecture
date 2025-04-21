@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Auction.Domain.Repositories.Abstraction;
-using Auction.Domain.Entities;
-using Auction.Domain.Repositories;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Repositories;
 
-namespace Auction.Infrastructure.Repositories
+namespace OrderWebsite.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly AuctionContext db;
+        private readonly OrdersContext db;
         private SemaphoreSlim semaphore;
-        public UserRepository(AuctionContext db)
+        public UserRepository(OrdersContext db)
         {
             this.db = db;
             semaphore = new SemaphoreSlim(3);
@@ -51,14 +50,10 @@ namespace Auction.Infrastructure.Repositories
                 semaphore.Release();
             }
         }
-
         public async Task<UserEntity> Get(int id)
         {
             var user = await db.Users
-                .Include(a=>a.Items)
-                .ThenInclude(g=>g.AuctionLot)
-                .Where(a=>a.Id == id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(a => a.Id == id);
             ArgumentNullException.ThrowIfNull(user);
             return user;
         }
@@ -67,15 +62,11 @@ namespace Auction.Infrastructure.Repositories
         public async Task<UserEntity> GetSingleUserByUsername(string username)
         {
             var user = await db.Users
-                .Include(a=>a.AuctionLots)
-                .Include(a => a.Items)
-                .ThenInclude(g => g.AuctionLot)
-                .Where(a => a.UserName == username)
-                .FirstOrDefaultAsync();
+                .Include(a=>a.Orders)
+                .FirstOrDefaultAsync(a => a.UserName == username);
             ArgumentNullException.ThrowIfNull(user);
             return user;
         }
-
         public async Task Update(int id, UserEntity entity)
         {
             await semaphore.WaitAsync(3);

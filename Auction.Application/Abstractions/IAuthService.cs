@@ -1,6 +1,5 @@
-using System.IdentityModel.Tokens.Jwt;
 
-namespace Auction.Application.Abstractions
+namespace OrderWebsite.Application.Abstractions
 {
     public interface IAuthService
     {

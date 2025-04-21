@@ -1,8 +1,8 @@
-using Auction.Application.Abstractions;
-using Auction.Domain.Entities;
-using Auction.Domain.Models;
+using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Models;
 
-namespace Auction.Application.Services
+namespace OrderWebsite.Application.Services
 {
     public class UserEntityToModelConverterService : IConverter<UserEntity, UserModel>
     {

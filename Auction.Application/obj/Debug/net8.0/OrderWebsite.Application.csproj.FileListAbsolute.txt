@@ -1,0 +1,16 @@
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\bin\Debug\net8.0\OrderWebsite.Application.deps.json
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\bin\Debug\net8.0\OrderWebsite.Application.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\bin\Debug\net8.0\OrderWebsite.Application.pdb
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.csproj.AssemblyReference.cache
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.AssemblyInfoInputs.cache
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.AssemblyInfo.cs
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.csproj.CoreCompileInputs.cache
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.sourcelink.json
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.csproj.CopyComplete
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\refint\OrderWebsite.Application.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\OrderWebsite.Application.pdb
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\obj\Debug\net8.0\ref\OrderWebsite.Application.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\bin\Debug\net8.0\OrderWebsite.Domain.dll
+C:\Users\Батя\Documents\GitHub\Clean-Mvc-Arcitecture\Auction.Application\bin\Debug\net8.0\OrderWebsite.Domain.pdb
