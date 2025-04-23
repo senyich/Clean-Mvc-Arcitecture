@@ -2,6 +2,7 @@
 using OrderWebsite.Domain.Entities;
 using OrderWebsite.Domain.Enums;
 using OrderWebsite.Domain.Models;
+using OrderWebsite.Domain.Repositories;
 using OrderWebsite.Domain.Repositories.Abstraction;
 
 namespace OrderWebsite.Application.Services
@@ -10,16 +11,16 @@ namespace OrderWebsite.Application.Services
     {        
         private IConverter<ItemEntity, ItemModel> itemEntityToModelConverter;
         private IConverter<ItemModel, ItemEntity> itemModelToEntityConverter;
-        private IDbRepository<ItemEntity> itemDbRepository;
+        private IItemRepository itemRepository;
         private ILoggerService logger;
         public ItemsRepositoryValidationService(
-            ILoggerService logger, 
-            IDbRepository<ItemEntity> itemDbRepository,
+            ILoggerService logger,
+            IItemRepository itemRepository,
             IConverter<ItemEntity, ItemModel> itemEntityToModelConverter,
             IConverter<ItemModel, ItemEntity> itemModelToEntityConverter)
         {
             this.logger = logger;
-            this.itemDbRepository = itemDbRepository;
+            this.itemRepository = itemRepository;
             this.itemEntityToModelConverter = itemEntityToModelConverter;
             this.itemModelToEntityConverter = itemModelToEntityConverter;
         }
@@ -28,7 +29,7 @@ namespace OrderWebsite.Application.Services
             try
             {
                 var itemEntity = await itemModelToEntityConverter.ConvertAsync(game);
-                int id = await itemDbRepository.Add(itemEntity);
+                int id = await itemRepository.Add(itemEntity);
                 await logger.LogAsync("ItemValidService", $"данные о предмете №{itemEntity.Id} были занесены успешно", LogType.Success);
                 return id;
             }
@@ -42,7 +43,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                await itemDbRepository.Delete(id);
+                await itemRepository.Delete(id);
                 await logger.LogAsync("ItemValidService", $"предмет №{id} был удален успешно", LogType.Success);
             }
             catch (Exception ex)
@@ -55,7 +56,7 @@ namespace OrderWebsite.Application.Services
             try
             {
                 var itemEntity = await itemModelToEntityConverter.ConvertAsync(game);
-                await itemDbRepository.Update(id, itemEntity);
+                await itemRepository.Update(id, itemEntity);
                 await logger.LogAsync("ItemValidService", $"предмет №{id} был обновлен успешно", LogType.Success);
             }
             catch (Exception ex)
@@ -67,7 +68,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var item = await itemDbRepository.Get(id);
+                var item = await itemRepository.Get(id);
                 await logger.LogAsync("ItemValidService", $"предмет №{id} был получен удачно", LogType.Success);
                 return await itemEntityToModelConverter.ConvertAsync(item);
             }
@@ -81,7 +82,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var items = await itemDbRepository.GetAll();
+                var items = await itemRepository.GetAll();
                 await logger.LogAsync("ItemValidService", $"все предметы были получены успешно", LogType.Success);
                 return items.Select(async item => await itemEntityToModelConverter.ConvertAsync(item))
                     .Select(t=>t.Result)

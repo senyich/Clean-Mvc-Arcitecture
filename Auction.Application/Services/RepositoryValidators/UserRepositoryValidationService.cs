@@ -3,7 +3,6 @@ using OrderWebsite.Domain.Entities;
 using OrderWebsite.Domain.Enums;
 using OrderWebsite.Domain.Models;
 using OrderWebsite.Domain.Repositories;
-using OrderWebsite.Domain.Repositories.Abstraction;
 
 namespace OrderWebsite.Application.Services
 {
@@ -11,16 +10,16 @@ namespace OrderWebsite.Application.Services
     {
         private IConverter<UserEntity, UserModel> userEntityToModelConverter;
         private IConverter<UserModel, UserEntity> userModelToEntityConverter;
-        private IUserRepository userDbRepository;
+        private IUserRepository userRepository;
         private ILoggerService logger;
         public UserRepositoryValidationService(
             ILoggerService logger,
-            IUserRepository userDbRepository,
+            IUserRepository userRepository,
             IConverter<UserEntity,UserModel> userEntityToModelConverter,
             IConverter<UserModel,UserEntity> userModelToEntityConverter)
         {
             this.logger = logger;
-            this.userDbRepository = userDbRepository;
+            this.userRepository = userRepository;
             this.userEntityToModelConverter = userEntityToModelConverter;
             this.userModelToEntityConverter = userModelToEntityConverter;
         }
@@ -31,7 +30,7 @@ namespace OrderWebsite.Application.Services
                 var userEntity = await userModelToEntityConverter.ConvertAsync(user);
                 if (userEntity == null)
                     throw new ArgumentNullException();
-                var id = await userDbRepository.Add(userEntity);
+                var id = await userRepository.Add(userEntity);
                 await logger.LogAsync("UserValidator", $"данные о пользователе  №{userEntity.Id} были занесены успешно", LogType.Success);
                 return id;
             }
@@ -45,7 +44,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                await userDbRepository.Delete(id);
+                await userRepository.Delete(id);
                 await logger.LogAsync("UserValidator", $"пользователь №{id} был удален успешно", LogType.Success);
             }
             catch (Exception ex)
@@ -58,7 +57,7 @@ namespace OrderWebsite.Application.Services
             try
             {
                 var userEntity = await userModelToEntityConverter.ConvertAsync(user);
-                await userDbRepository.Update(id, userEntity);
+                await userRepository.Update(id, userEntity);
                 await logger.LogAsync("UserValidator", $"пользователь №{id} был обновлен успешно", LogType.Success);
             }
             catch (Exception ex)
@@ -70,7 +69,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var user = await userDbRepository.Get(id);
+                var user = await userRepository.Get(id);
                 if (user == null)
                     throw new ArgumentNullException();
                 await logger.LogAsync("UserValidator", $"пользователь №{id} был получен успешно", LogType.Success);
@@ -86,7 +85,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var users = await userDbRepository.GetAll();
+                var users = await userRepository.GetAll();
                 await logger.LogAsync("UserValidator", $"пользователи были получены успешно", LogType.Success);
                 return users.Select(async l => await userEntityToModelConverter.ConvertAsync(l))
                     .Select(t=>t.Result)
@@ -103,7 +102,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var user = await userDbRepository.GetSingleUserByUsername(username);
+                var user = await userRepository.GetSingleUserByUsername(username);
                 if (user == null)
                     return null;
                 await logger.LogAsync("UserValidator", $"пользователь №{user.Id} был получен успешно", LogType.Success);

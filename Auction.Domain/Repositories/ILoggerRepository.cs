@@ -1,6 +1,6 @@
 ﻿using OrderWebsite.Domain.Enums;
 
-namespace OrderWebsite.Domain.Repositories.Abstraction
+namespace OrderWebsite.Domain.Repositories
 {
     public interface ILoggerRepository
     {

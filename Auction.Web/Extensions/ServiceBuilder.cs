@@ -8,11 +8,10 @@ using OrderWebsite.Domain.Entities;
 using OrderWebsite.Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using OrderWebsite.Domain.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+using System.Text;
 
-namespace OrderWebsite.Web.ServiceExtension
+namespace OrderWebsite.Web.Extensions
 {
     public static class ServiceBuilder
     {
@@ -23,8 +22,8 @@ namespace OrderWebsite.Web.ServiceExtension
         }
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {     
-            services.AddScoped<IDbRepository<OrderEntity>, OrdersRepository>();
-            services.AddScoped<IDbRepository<ItemEntity>, ItemRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILoggerRepository, LoggerDbRepository>();
             return services;

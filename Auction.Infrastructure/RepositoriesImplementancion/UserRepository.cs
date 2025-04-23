@@ -73,7 +73,8 @@ namespace OrderWebsite.Infrastructure.Repositories
                 await db.Users.Where(u=>u.Id == id)
                     .ExecuteUpdateAsync(u=>u
                         .SetProperty(u=>u.UserName, entity.UserName)
-                        .SetProperty(u=>u.PasswordHash, entity.PasswordHash));
+                        .SetProperty(u=>u.PasswordHash, entity.PasswordHash)
+                        .SetProperty(u=>u.Balance, entity.Balance));
                 await db.SaveChangesAsync();
             }
             catch(Exception)

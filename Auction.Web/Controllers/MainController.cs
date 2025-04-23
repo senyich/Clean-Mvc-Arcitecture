@@ -1,33 +1,32 @@
-using OrderWebsite.Application.Abstractions;
-using OrderWebsite.Domain.Models;
-using OrderWebsite.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Web.ViewModels;
 using System.Security.Claims;
 
 namespace OrderWebsite.Web.Controllers
 {
     public class MainController : Controller
     {
-        private IOrderValidationService auctionRepository;
-        private IItemValidationService itemRepository;
-        private IUserValidationService userRepository;
+        private IOrderValidationService auctionValidator;
+        private IItemValidationService itemValidator;
+        private IUserValidationService userValidator;
         public MainController(
-            IOrderValidationService auctionRepository,
-            IItemValidationService gameRepository,
-            IUserValidationService userRepository
+            IOrderValidationService auctionValidator,
+            IItemValidationService itemValidator,
+            IUserValidationService userValidator
             )
         {
-            this.auctionRepository = auctionRepository;
-            this.itemRepository = gameRepository;
-            this.userRepository = userRepository;
+            this.auctionValidator = auctionValidator;
+            this.itemValidator = itemValidator;
+            this.userValidator = userValidator;
         }
         [HttpGet]
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            var games = await itemRepository.GetAllItemsAsync();
-            var auctions = await auctionRepository.GetAllOrdersAsync();
-            var users = await userRepository.GetAllUsersAsync();
+            var games = await itemValidator.GetAllItemsAsync();
+            var auctions = await auctionValidator.GetAllOrdersAsync();
+            var users = await userValidator.GetAllUsersAsync();
             if (games == null && auctions == null && users == null)
                 return View(new OrdersAndItemsViewModel());
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -66,8 +65,8 @@ namespace OrderWebsite.Web.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
-            var games = await itemRepository.GetAllItemsAsync();
-            var auctions = await auctionRepository.GetAllOrdersAsync();
+            var games = await itemValidator.GetAllItemsAsync();
+            var auctions = await auctionValidator.GetAllOrdersAsync();
             var view = new CreateOrderViewModel()
             {
                 Items = games.Where(i=>i.OwnerId == int.Parse(userId)).ToList()
@@ -87,8 +86,8 @@ namespace OrderWebsite.Web.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Items()
         {
-            var games = await itemRepository.GetAllItemsAsync();
-            var users = await userRepository.GetAllUsersAsync();
+            var games = await itemValidator.GetAllItemsAsync();
+            var users = await userValidator.GetAllUsersAsync();
             if (users != null && games != null)
             {
                 var view = new AllItemsViewModel()
@@ -115,8 +114,8 @@ namespace OrderWebsite.Web.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
-            var user = await userRepository.GetSingleUserAsync(int.Parse(userId));
-            var items = await itemRepository.GetAllItemsAsync();
+            var user = await userValidator.GetSingleUserAsync(int.Parse(userId));
+            var items = await itemValidator.GetAllItemsAsync();
             if (items != null && user != null)
             {
                 var userViewModel = new UserDataViewModel()

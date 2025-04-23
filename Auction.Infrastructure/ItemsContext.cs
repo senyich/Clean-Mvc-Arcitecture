@@ -10,9 +10,5 @@ namespace OrderWebsite.Infrastructure
             : base(options)
         {
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-        }
     }
 }

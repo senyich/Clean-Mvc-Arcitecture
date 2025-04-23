@@ -2,7 +2,7 @@
 using OrderWebsite.Domain.Entities;
 using OrderWebsite.Domain.Enums;
 using OrderWebsite.Domain.Models;
-using OrderWebsite.Domain.Repositories.Abstraction;
+using OrderWebsite.Domain.Repositories;
 
 namespace OrderWebsite.Application.Services
 {
@@ -10,16 +10,16 @@ namespace OrderWebsite.Application.Services
     {
         private IConverter<OrderEntity, OrderModel> orderEntityToModelConverter;
         private IConverter<OrderModel, OrderEntity> orderModelToEntityConverter;
-        private IDbRepository<OrderEntity> orderDbRepository;
+        private IOrderRepository orderRepository;
         private ILoggerService logger;
         public OrderRepositoryValidationService(
             ILoggerService logger,
-            IDbRepository<OrderEntity> orderDbRepository, 
+            IOrderRepository orderRepository, 
             IConverter<OrderEntity, OrderModel> orderEntityToModelConverter,
             IConverter<OrderModel, OrderEntity> orderModelToEntityConverter)
         {
             this.logger = logger;
-            this.orderDbRepository = orderDbRepository;
+            this.orderRepository = orderRepository;
             this.orderEntityToModelConverter = orderEntityToModelConverter;
             this.orderModelToEntityConverter = orderModelToEntityConverter;
         }
@@ -28,7 +28,7 @@ namespace OrderWebsite.Application.Services
             try
             {
                 var orderEntity = await orderModelToEntityConverter.ConvertAsync(orderModel);
-                int id = await orderDbRepository.Add(orderEntity);
+                int id = await orderRepository.Add(orderEntity);
                 await logger.LogAsync("OrderValidator", $"данные об ордере №{orderEntity.Id} были занесены успешно", LogType.Success);
                 return id;
             }
@@ -42,7 +42,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                await orderDbRepository.Delete(id);
+                await orderRepository.Delete(id);
                 await logger.LogAsync("OrderValidator", $"ордер №{id} был удален успешно", LogType.Success);
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace OrderWebsite.Application.Services
             try
             {
                 var orderEntity = await orderModelToEntityConverter.ConvertAsync(orderModel);
-                await orderDbRepository.Update(id, orderEntity);
+                await orderRepository.Update(id, orderEntity);
                 await logger.LogAsync("OrderValidator", $"ордер №{id} был обновлен успешно", LogType.Success);
             }
             catch (Exception ex)
@@ -67,7 +67,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var auction = await orderDbRepository.Get(id);
+                var auction = await orderRepository.Get(id);
                 await logger.LogAsync("OrderValidator", $"ордер №{id} был получен успешно", LogType.Success);
                 return await orderEntityToModelConverter.ConvertAsync(auction);
             }
@@ -81,7 +81,7 @@ namespace OrderWebsite.Application.Services
         {
             try
             {
-                var lots = await orderDbRepository.GetAll();
+                var lots = await orderRepository.GetAll();
                 await logger.LogAsync("OrderValidator", $"все ордеры получены успешно", LogType.Success);
                 return lots.Select(async lot => await orderEntityToModelConverter.ConvertAsync(lot))
                     .Select(t => t.Result)

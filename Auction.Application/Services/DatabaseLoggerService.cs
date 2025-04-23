@@ -1,6 +1,6 @@
 ﻿using OrderWebsite.Application.Abstractions;
 using OrderWebsite.Domain.Enums;
-using OrderWebsite.Domain.Repositories.Abstraction;
+using OrderWebsite.Domain.Repositories;
 
 namespace OrderWebsite.Application.Services
 {

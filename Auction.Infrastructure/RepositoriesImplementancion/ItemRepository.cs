@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderWebsite.Domain.Repositories.Abstraction;
 using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Repositories;
 
 namespace OrderWebsite.Infrastructure.Repositories
 {
-    public class ItemRepository : IDbRepository<ItemEntity>
+    public class ItemRepository : IItemRepository
     {
         private readonly ItemsContext db;
         private SemaphoreSlim semaphore;

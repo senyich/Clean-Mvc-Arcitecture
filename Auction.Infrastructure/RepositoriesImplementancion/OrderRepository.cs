@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OrderWebsite.Domain.Repositories.Abstraction;
 using OrderWebsite.Domain.Entities;
+using OrderWebsite.Domain.Repositories;
 
 namespace OrderWebsite.Infrastructure.Repositories
 {
-    public class OrdersRepository : IDbRepository<OrderEntity>
+    public class OrderRepository : IOrderRepository
     {       
         private readonly TradingExchangeContext db;
         private SemaphoreSlim semaphore;
-        public OrdersRepository(TradingExchangeContext db)
+        public OrderRepository(TradingExchangeContext db)
         {
             this.db = db;
             semaphore = new SemaphoreSlim(3);
