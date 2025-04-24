@@ -1,13 +1,13 @@
 ﻿
 namespace OrderWebsite.Domain.Repositories.Abstraction
 {
-    public interface IDbRepository<T> where T : class
+    public interface IDbRepository<Entity> where Entity : class
     {
-        Task<int> Add(T entity);
+        Task<int> Add(Entity entity);
         Task Delete(int id);
-        Task Update(int id, T entity);
-        Task<List<T>> GetAll();
-        Task<T> Get(int id);
+        Task Update(int id, Entity entity);
+        Task<IEnumerable<Entity>> GetAll();
+        Task<Entity> Get(int id);
     }
 }
 

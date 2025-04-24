@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderWebsite.Domain.Entities;
 using OrderWebsite.Domain.Repositories;
+using OrderWebsite.Infrastructure.Persistense;
 
 namespace OrderWebsite.Infrastructure.Repositories
 {
@@ -21,14 +22,8 @@ namespace OrderWebsite.Infrastructure.Repositories
                 await db.Users.AddAsync(entity);
                 await db.SaveChangesAsync();
             }
-            catch(Exception)
-            {
-                throw;
-            }
-            finally
-            { 
-                semaphore.Release();
-            }
+            catch (Exception) { throw; }
+            finally { semaphore.Release(); }
             return entity.Id;
         }
         public async Task Delete(int id)
@@ -37,33 +32,28 @@ namespace OrderWebsite.Infrastructure.Repositories
             try
             {
                 await db.Users
-                    .Where(u=>u.Id == id)
+                    .Where(u => u.Id == id)
                     .ExecuteDeleteAsync();
                 await db.SaveChangesAsync();
             }
-            catch(Exception)
-            {
-                throw;
-            }
-            finally
-            { 
-                semaphore.Release();
-            }
+            catch (Exception) { throw; }
+            finally { semaphore.Release(); }
         }
         public async Task<UserEntity> Get(int id)
         {
             var user = await db.Users
+                .Include(a => a.Orders)
                 .FirstOrDefaultAsync(a => a.Id == id);
+            ArgumentNullException.ThrowIfNull(user);
             return user;
         }
-        public async Task<List<UserEntity>> GetAll() => await db.Users.ToListAsync();
-
         public async Task<UserEntity> GetSingleUserByUsername(string username)
         {
             var user = await db.Users
                 .Include(a=>a.Orders)
                 .FirstOrDefaultAsync(a => a.UserName == username);
-            return user;
+            ArgumentNullException.ThrowIfNull(user);
+            return user; 
         }
         public async Task Update(int id, UserEntity entity)
         {
@@ -77,14 +67,13 @@ namespace OrderWebsite.Infrastructure.Repositories
                         .SetProperty(u=>u.Balance, entity.Balance));
                 await db.SaveChangesAsync();
             }
-            catch(Exception)
-            {
-                throw;
-            }
-            finally
-            { 
-                semaphore.Release();
-            }
+            catch (Exception) { throw; }
+            finally { semaphore.Release(); }
+        }
+        public async Task<IEnumerable<UserEntity>> GetAll()
+        {
+            var users = await db.Users.ToListAsync();
+            return users != null ? users : new List<UserEntity>();
         }
     }
 }

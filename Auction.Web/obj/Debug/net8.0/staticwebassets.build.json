@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0NuILLgBs1hIzBT7xrS0nXimlCAOBuxh7UsLtkelcT0=",
+  "Hash": "Hl2czZjHRWLNoZz2HZXxPvEUAjWYyW84lzo5QhP6oME=",
   "Source": "OrderWebsite.Web",
   "BasePath": "_content/OrderWebsite.Web",
   "Mode": "Default",
@@ -1345,6 +1345,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadedImages\\ecd1d832-66aa-4ca7-b901-e2c8db7aa4bc.png"
+    },
+    {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\fd1cc4e7-0cfd-4448-b1a7-fecc6c89a219.png",
+      "SourceId": "OrderWebsite.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/OrderWebsite.Web",
+      "RelativePath": "UploadedImages/fd1cc4e7-0cfd-4448-b1a7-fecc6c89a219.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\fd1cc4e7-0cfd-4448-b1a7-fecc6c89a219.png"
+    },
+    {
+      "Identity": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\UploadedImages\\fde84aa8-5414-42c1-bb99-e204dcf566ce.png",
+      "SourceId": "OrderWebsite.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Web\\wwwroot\\",
+      "BasePath": "_content/OrderWebsite.Web",
+      "RelativePath": "UploadedImages/fde84aa8-5414-42c1-bb99-e204dcf566ce.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedImages\\fde84aa8-5414-42c1-bb99-e204dcf566ce.png"
     }
   ]
 }

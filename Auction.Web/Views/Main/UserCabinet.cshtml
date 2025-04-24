@@ -54,17 +54,29 @@
                             <thead>
                                 <tr>
                                     <th>Название</th>
+                                    <th>Статус</th>
                                     <th>Описание</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model.Items)
                                 {
-                                    <tr class="glass-card-hover">
-                                        <td>@item.Name</td>
-                                        <td><span class="badge bg-success">Активна</span></td>
-                                        <td>@item.Description</td>
-                                    </tr>
+                                    if(item.OrderId == 0)
+                                    {
+                                        <tr class="glass-card-hover">
+                                            <td>@item.Name</td>
+                                            <td><span class="badge bg-success">Активна</span></td>
+                                            <td>@item.Description</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr class="glass-card-hover">
+                                            <td>@item.Name</td>
+                                            <td><span class="badge bg-success">Игра выставлена на продажу, ордер №@item.OrderId</span></td>
+                                            <td>@item.Description</td>
+                                        </tr>
+                                    }
                                 }
                             </tbody>
                         </table>

@@ -2,23 +2,25 @@ using Microsoft.AspNetCore.Mvc;
 using OrderWebsite.Web.ViewModels;
 using OrderWebsite.Domain.Models;
 using OrderWebsite.Domain.Enums;
-using OrderWebsite.Application.Abstractions;
 using System.Security.Claims;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
+using OrderWebsite.Application.Abstractions.IValidators;
+using OrderWebsite.Application.Abstractions.IServices;
+using Microsoft.IdentityModel.Tokens;
 
 namespace OrderWebsite.Web.Controllers
 {
     public class FormController : Controller
     {
-        private IOrderValidationService auctionValidator;
+        private IOrderValidationService orderValidator;
         private IUserValidationService userValidator;
         private IItemValidationService itemValidator;
-        private IAuthService authService;
-        private ILoggerService logger;
         private IFileLogisticService fileLogisticService;
         private IWebHostEnvironment environment;
+        private IAuthService authService;
+        private ILoggerService logger;
         public FormController(
-            IOrderValidationService auctionValidator,
+            IOrderValidationService orderValidator,
             IItemValidationService itemValidator,
             IUserValidationService userValidator,
             ILoggerService logger,
@@ -27,31 +29,46 @@ namespace OrderWebsite.Web.Controllers
             IAuthService authService
             )
         {
-            this.itemValidator = itemValidator;
-            this.auctionValidator = auctionValidator;
-            this.logger = logger;
             this.fileLogisticService = fileLogisticService;
+            this.itemValidator = itemValidator;
+            this.orderValidator = orderValidator;
+            this.userValidator = userValidator;
             this.environment = environment;
             this.authService = authService;
-            this.userValidator = userValidator;
+            this.logger = logger;
         }
         [HttpPost]
         [Route("/Api/CreateOrder")]
         public async Task<IActionResult> CreateOrder(CreateOrderViewModel model)
         {
             int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
-            var (auctionModel, error) = OrderModel.Create(0, model.ItemId, userId, model.BuyPrice);    
+            var (auctionModel, error) = OrderModel.Create(
+                0, 
+                model.ItemId, 
+                userId,
+                model.BuyPrice);    
             if(string.IsNullOrEmpty(error))
             {          
-                int id = await auctionValidator.CreateOrderAsync(auctionModel);
+                int id = await orderValidator.CreateOrderAsync(auctionModel!);
 
                 var tmpItem = await itemValidator.GetSingleItemAsync(model.ItemId);
 
-                var (updGame, gameError) = ItemModel.Create(tmpItem.Id, tmpItem.Name, tmpItem.Description, tmpItem.ImgPath, id, userId);
-                
-                await itemValidator.UpdateItemAsync(model.ItemId, updGame);
-                await logger.LogAsync("FormController", "успешное добавление лота", LogType.Success);
-                return RedirectToAction("Index", "Main");
+                var (updatedItemModel, updateError) = ItemModel.Create(
+                    tmpItem.Id, 
+                    tmpItem.Name, 
+                    tmpItem.Description,
+                    tmpItem.ImgPath, 
+                    id, 
+                    userId);
+                if (string.IsNullOrEmpty(updateError))
+                {
+                    await itemValidator.UpdateItemAsync(model.ItemId, updatedItemModel!);
+                    await logger.LogAsync("FormController", "успешное добавление Ордера", LogType.Success);
+                    return RedirectToAction("Index", "Main");
+                }
+                else
+                    await logger.LogAsync("FormController", "успешное добавление Ордера", LogType.Success);
+                //TODO: сделать обработку ошибок
             }
             await logger.LogAsync("FormController",error,LogType.Error);
             return RedirectToAction("Index", "Main");
@@ -60,24 +77,30 @@ namespace OrderWebsite.Web.Controllers
         [Route("/Api/BuyOrder")]
         public async Task<IActionResult> BuyOrder(int orderId)
         {
+            //TODO: вынести логику в отдельный сервис
+            //TODO: сделать логирование
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
 
             var user = await userValidator.GetSingleUserAsync(int.Parse(userId));
             var item = (await itemValidator.GetAllItemsAsync()).FirstOrDefault(f => f.OrderId == orderId);
-            var order = await auctionValidator.GetSingleOrderAsync(orderId);
+            var order = await orderValidator.GetSingleOrderAsync(orderId);
             var owner = await userValidator.GetSingleUserAsync(order.OwnerId);
 
-            (ItemModel model, string error) newItem = ItemModel.Create(item.Id, item.Name, item.Description, item.ImgPath, 0, user.Id);
-            (UserModel model, string error) newUser = UserModel.Create(user.Id, user.UserName, user.PasswordHash, user.Balance - order.BuyPrice);
-            (UserModel model, string error) newOwner = UserModel.Create(owner.Id, owner.UserName, owner.PasswordHash, owner.Balance + order.BuyPrice);
+            (ItemModel model, string error) newItem = ItemModel.Create(item.Id, item.Name, item.Description, item.ImgPath, 0, user.Id)!;
+            (UserModel model, string error) newUser = UserModel.Create(user.Id, user.UserName, user.PasswordHash, user.Balance - order.BuyPrice)!;
+            (UserModel model, string error) newOwner = UserModel.Create(owner.Id, owner.UserName, owner.PasswordHash, owner.Balance + order.BuyPrice)!;
 
-            await userValidator.UpdateUserAsync(user.Id, newUser.model);
-            await userValidator.UpdateUserAsync(owner.Id, newOwner.model);
-            await itemValidator.UpdateItemAsync(item.Id, newItem.model);
-            await auctionValidator.RemoveOrderAsync(orderId);
-
+            if(string.IsNullOrEmpty(newItem.error)
+                || string.IsNullOrEmpty(newUser.error)
+                || string.IsNullOrEmpty(newOwner.error))
+            {
+                await userValidator.UpdateUserAsync(user.Id, newUser.model);
+                await userValidator.UpdateUserAsync(owner.Id, newOwner.model);
+                await itemValidator.UpdateItemAsync(item.Id, newItem.model);
+                await orderValidator.RemoveOrderAsync(orderId);
+            }
             return RedirectToAction("Index", "Main");
         }
         [HttpPost]
@@ -87,7 +110,13 @@ namespace OrderWebsite.Web.Controllers
             int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
             string filePath = await fileLogisticService.SaveFileAsync(item.ImageFile, environment.WebRootPath);
 
-            var (itemModel, error) = ItemModel.Create(item.Id, item.Name, item.Description, filePath, 0, userId);
+            var (itemModel, error) = ItemModel.Create(
+                item.Id,
+                item.Name,
+                item.Description,
+                filePath, 
+                0, 
+                userId);
 
             if(string.IsNullOrEmpty(error))
             {
@@ -103,10 +132,15 @@ namespace OrderWebsite.Web.Controllers
         [Route("/Api/Register")]
         public async Task<IActionResult> RegisterUser(UserAuthViewModel userFormData)
         {
-            await authService.RegisterAsync(userFormData.UserName, userFormData.Password);
-            return await LoginUser(userFormData);
+            //TODO: сделать обработку ошибок
+            try
+            {
+                await authService.RegisterAsync(userFormData.UserName, userFormData.Password);
+                return await LoginUser(userFormData);
+            }
+            catch(Exception ex) { return await LoginUser(userFormData); }
+
         }
-   
         [HttpPost]
         [Route("/Api/Login")]
         public async Task<IActionResult> LoginUser(UserAuthViewModel userFormData)

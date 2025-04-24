@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using OrderWebsite.Application.Abstractions;
 using OrderWebsite.Application.Services;
-using OrderWebsite.Infrastructure;
 using OrderWebsite.Infrastructure.Repositories;
 using OrderWebsite.Domain.Repositories.Abstraction;
 using OrderWebsite.Domain.Entities;
@@ -10,6 +8,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using OrderWebsite.Domain.Repositories;
 using System.Text;
+using OrderWebsite.Application.Abstractions.IValidators;
+using OrderWebsite.Application.Abstractions.IServices;
+using OrderWebsite.Infrastructure.Persistense;
 
 namespace OrderWebsite.Web.Extensions
 {
@@ -47,12 +48,12 @@ namespace OrderWebsite.Web.Extensions
             services.AddScoped<IOrderValidationService, OrderRepositoryValidationService>();
             services.AddScoped<IItemValidationService, ItemsRepositoryValidationService>();
             services.AddScoped<IUserValidationService, UserRepositoryValidationService>();
-            services.AddScoped<IConverter<UserEntity, UserModel>, UserEntityToModelConverterService>();
-            services.AddScoped<IConverter<UserModel,UserEntity>, UserModelToEntityConverterService>();
-            services.AddScoped<IConverter<OrderModel,OrderEntity>, OrderModelToEntityConverterService>();
-            services.AddScoped<IConverter<OrderEntity, OrderModel>, OrderEntityToModelConverterService>();
-            services.AddScoped<IConverter<ItemEntity, ItemModel>, ItemEntityToModelConverterService>();
-            services.AddScoped<IConverter<ItemModel,ItemEntity>, ItemModelToEntityConverterService>();
+            services.AddScoped<IConverterService<UserEntity, UserModel>, UserEntityToModelConverterService>();
+            services.AddScoped<IConverterService<UserModel,UserEntity>, UserModelToEntityConverterService>();
+            services.AddScoped<IConverterService<OrderModel,OrderEntity>, OrderModelToEntityConverterService>();
+            services.AddScoped<IConverterService<OrderEntity, OrderModel>, OrderEntityToModelConverterService>();
+            services.AddScoped<IConverterService<ItemEntity, ItemModel>, ItemEntityToModelConverterService>();
+            services.AddScoped<IConverterService<ItemModel,ItemEntity>, ItemModelToEntityConverterService>();
             services.AddScoped<IFileLogisticService, ImagesLogisticService>();
             services.AddScoped<ISecurityService, SecurityService>();
             services.AddScoped<IAuthService, UserAuthService>();

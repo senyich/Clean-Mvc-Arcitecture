@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using OrderWebsite.Application.Abstractions;
+using OrderWebsite.Application.Abstractions.IValidators;
 using OrderWebsite.Web.ViewModels;
 using System.Security.Claims;
 
@@ -24,10 +24,10 @@ namespace OrderWebsite.Web.Controllers
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            var games = await itemValidator.GetAllItemsAsync();
+            var items = await itemValidator.GetAllItemsAsync();
             var auctions = await auctionValidator.GetAllOrdersAsync();
             var users = await userValidator.GetAllUsersAsync();
-            if (games == null && auctions == null && users == null)
+            if (items == null && auctions == null && users == null)
                 return View(new OrdersAndItemsViewModel());
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
@@ -36,20 +36,20 @@ namespace OrderWebsite.Web.Controllers
                 {
                     UserId = 0,
                     Orders = auctions,
-                    Items = games,
+                    Items = items,
                     Users = users
                 };
                 return View(view);
             }
             else
             {
-                if (games != null && auctions != null && users != null)
+                if (items != null && auctions != null && users != null)
                 {
                     var view = new OrdersAndItemsViewModel()
                     {
                         UserId = int.Parse(userId),
                         Orders = auctions,
-                        Items = games,
+                        Items = items,
                         Users = users
                     };
                     return View(view);
@@ -65,11 +65,11 @@ namespace OrderWebsite.Web.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if(userId == null)
                 return RedirectToAction("Authorization", "Main");
-            var games = await itemValidator.GetAllItemsAsync();
+            var items = await itemValidator.GetAllItemsAsync();
             var auctions = await auctionValidator.GetAllOrdersAsync();
             var view = new CreateOrderViewModel()
             {
-                Items = games.Where(i=>i.OwnerId == int.Parse(userId)).ToList()
+                Items = items.Where(i=>i.OwnerId == int.Parse(userId)).ToList()
             };
             return View(view);
         } 
@@ -86,13 +86,13 @@ namespace OrderWebsite.Web.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Items()
         {
-            var games = await itemValidator.GetAllItemsAsync();
+            var items = await itemValidator.GetAllItemsAsync();
             var users = await userValidator.GetAllUsersAsync();
-            if (users != null && games != null)
+            if (users != null && items != null)
             {
                 var view = new AllItemsViewModel()
                 {
-                    Items = games,
+                    Items = items,
                     Users = users
                 };
                 return View(view);
@@ -104,6 +104,9 @@ namespace OrderWebsite.Web.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Authorization()
         {
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId != null)
+                return RedirectToAction("UserCabinet", "Main");
             var usrModel = new UserAuthViewModel();
             return View(usrModel);
         }
@@ -123,7 +126,7 @@ namespace OrderWebsite.Web.Controllers
                     Id = user.Id,
                     UserName = user.UserName,
                     Balance = user.Balance,
-                    Items = items.Where(u=>u.Id == int.Parse(userId)).ToList()
+                    Items = items.Where(u=>u.OwnerId == int.Parse(userId)).ToList()
                 };
                 return View(userViewModel);
             }

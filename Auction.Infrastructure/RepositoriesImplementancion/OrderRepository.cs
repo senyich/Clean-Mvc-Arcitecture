@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderWebsite.Domain.Entities;
 using OrderWebsite.Domain.Repositories;
+using OrderWebsite.Infrastructure.Persistense;
 
 namespace OrderWebsite.Infrastructure.Repositories
 {
@@ -40,9 +41,10 @@ namespace OrderWebsite.Infrastructure.Repositories
         }
         public async Task<OrderEntity> Get(int id)
         {
-            var auction = await db.Orders.FirstOrDefaultAsync(a => a.Id == id);
-            ArgumentNullException.ThrowIfNull(auction);
-            return auction;
+            var order = await db.Orders
+                .FirstOrDefaultAsync(a => a.Id == id);
+            ArgumentNullException.ThrowIfNull(order);
+            return order;
         }
         public async Task Update(int id, OrderEntity entity)
         {
@@ -52,13 +54,17 @@ namespace OrderWebsite.Infrastructure.Repositories
                 await db.Orders.Where(a => a.Id == id)
                     .ExecuteUpdateAsync(a => a
                         .SetProperty(a => a.ItemId, entity.ItemId)
+                        .SetProperty(a => a.OwnerId, entity.OwnerId)
                         .SetProperty(a => a.BuyPrice, entity.BuyPrice));
                 await db.SaveChangesAsync();
             }
             catch(Exception) { throw; }
             finally { semaphore.Release(); }
         }
-        public async Task<List<OrderEntity>> GetAll() => await db.Orders.ToListAsync();
- 
+        public async Task<IEnumerable<OrderEntity>> GetAll()
+        {
+            var orders = await db.Orders.ToListAsync();
+            return orders != null ? orders : new List<OrderEntity>();
+        }
     }
 }
