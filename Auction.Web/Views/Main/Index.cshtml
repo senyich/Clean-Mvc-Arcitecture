@@ -33,7 +33,7 @@
                                 @try
                                 {
                                     <td class="text-white">@order.Id</td>
-                                    <td class="text-white">@Model.Users.FirstOrDefault(u => u.Id == order.OwnerId).UserName</td>
+                                    <td class="text-white">@Model.Users.FirstOrDefault(u => u.Id == order.OwnerId)?.UserName ?? "Ошибка"</td>
                                     <td class="text-white">@Model.Items.First(g => g.OrderId == order.Id).Name</td>
                                     <td class="text-white"><img src="@Model.Items.First(g => g.OrderId == order.Id).ImgPath" class="img-thumbnail" style="max-height: 60px; background: rgba(255,255,255,0.1);" /></td>
                                     <td class="text-white-50">@Model.Items.First(g => g.OrderId == order.Id).Description</td>

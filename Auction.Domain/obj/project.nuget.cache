@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uvtjUEGadeSFH9ePdi4jCi/qWCo07KLTJyZwuqG5w19gzmxTR7G9EBZWAUzmCq6toBX4E0R7L1o+2rQ6Nd84PA==",
+  "dgSpecHash": "8JNGgjvipkbZTnfj4J3rK5jAccc53FmCUg8/4FlwqMpxaZ/rejBIAw4MwdHCjlWdt5sDIP7thxdN8Fn58Lgvtw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Батя\\Documents\\GitHub\\Clean-Mvc-Arcitecture\\Auction.Domain\\OrderWebsite.Domain.csproj",
+  "projectFilePath": "/home/senyacm/github/Clean-Mvc-Arcitecture/Auction.Domain/OrderWebsite.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

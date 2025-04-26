@@ -87,7 +87,8 @@ namespace OrderWebsite.Web.Controllers
             var item = (await itemValidator.GetAllItemsAsync()).FirstOrDefault(f => f.OrderId == orderId);
             var order = await orderValidator.GetSingleOrderAsync(orderId);
             var owner = await userValidator.GetSingleUserAsync(order.OwnerId);
-
+            if(user.Balance<order.BuyPrice)
+                return Content("У вас недостаточно средств!");
             (ItemModel model, string error) newItem = ItemModel.Create(item.Id, item.Name, item.Description, item.ImgPath, 0, user.Id)!;
             (UserModel model, string error) newUser = UserModel.Create(user.Id, user.UserName, user.PasswordHash, user.Balance - order.BuyPrice)!;
             (UserModel model, string error) newOwner = UserModel.Create(owner.Id, owner.UserName, owner.PasswordHash, owner.Balance + order.BuyPrice)!;
@@ -132,14 +133,8 @@ namespace OrderWebsite.Web.Controllers
         [Route("/Api/Register")]
         public async Task<IActionResult> RegisterUser(UserAuthViewModel userFormData)
         {
-            //TODO: сделать обработку ошибок
-            try
-            {
-                await authService.RegisterAsync(userFormData.UserName, userFormData.Password);
-                return await LoginUser(userFormData);
-            }
-            catch(Exception ex) { return await LoginUser(userFormData); }
-
+            await authService.RegisterAsync(userFormData.UserName, userFormData.Password);
+            return await LoginUser(userFormData);
         }
         [HttpPost]
         [Route("/Api/Login")]
@@ -155,7 +150,7 @@ namespace OrderWebsite.Web.Controllers
             catch(Exception ex)
             {
                 await logger.LogAsync("FormController", $"ошибка регистрации/авторизации - {ex.Message}", LogType.Error);
-                return Content(ex.Message);
+                return Content("шибка регистрации/авторизации");
             }
         }
     }

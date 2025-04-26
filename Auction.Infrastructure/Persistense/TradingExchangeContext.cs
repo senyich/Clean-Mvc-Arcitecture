@@ -11,6 +11,7 @@ namespace OrderWebsite.Infrastructure.Persistense
         public TradingExchangeContext(DbContextOptions<TradingExchangeContext> options)
             : base(options)
         {
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

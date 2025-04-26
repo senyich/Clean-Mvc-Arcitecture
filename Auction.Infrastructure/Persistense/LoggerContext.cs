@@ -1,7 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
-using OrderWebsite.Domain;
 using OrderWebsite.Domain.Entities;
+
 namespace OrderWebsite.Infrastructure.Persistense
 {
     public class LoggerContext : DbContext
@@ -10,6 +10,7 @@ namespace OrderWebsite.Infrastructure.Persistense
         public LoggerContext(DbContextOptions<LoggerContext> options)
             : base(options)
         {
+        
         }
     }
 }

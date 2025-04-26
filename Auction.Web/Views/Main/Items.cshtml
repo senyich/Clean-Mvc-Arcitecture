@@ -23,6 +23,7 @@
                             <th class="text-white fw-bold">Описание</th>
                             <th class="text-white fw-bold">Изображение</th>
                             <th class="text-white fw-bold">Ордер</th>
+                            <th class="text-white fw-bold">Владелец</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +53,7 @@
                                         <span class="badge bg-secondary">Не продается</span>
                                     }
                                 </td>
-                                <td><span class="badge bg-success">Владелец: #@Model.Users.FirstOrDefault(u=>u.Id == item.OwnerId).UserName</span></td
+                                <td><span class="badge bg-success">#@Model.Users.FirstOrDefault(u=>u.Id == item.OwnerId)?.UserName ?? Ошибка</span></td
                             </tr>
                         }
                     </tbody>
